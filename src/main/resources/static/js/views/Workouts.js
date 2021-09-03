@@ -6,26 +6,28 @@ export default function Workouts(props) {
         <main>
             <div>
                <form>
-  <input type="checkbox" id="shoulders" name="vehicle1" value="Bike">
-  <label for="vehicle1"> I have a bike</label><br>
-  <input type="checkbox" id="chest" name="vehicle2" value="Car">
-  <label for="vehicle2"> I have a car</label><br>
-  <input type="checkbox" id="biceps" name="vehicle3" value="Boat">
-  <label for="vehicle3"> I have a boat</label>
-  <input type="checkbox" id="triceps" name="vehicle1" value="Bike">
-  <label for="vehicle1"> I have a bike</label><br>
-  <input type="checkbox" id="abs" name="vehicle2" value="Car">
-  <label for="vehicle2"> I have a car</label><br>
-  <input type="checkbox" id="ass" name="vehicle3" value="Boat">
-  <label for="vehicle3"> I have a boat</label>
-  <input type="checkbox" id="quads" name="vehicle1" value="Bike">
-  <label for="vehicle1"> I have a bike</label><br>
-  <input type="checkbox" id="hammies" name="vehicle2" value="Car">
-  <label for="vehicle2"> I have a car</label><br>
-  <input type="checkbox" id="caffs" name="vehicle3" value="Boat">
-  <label for="vehicle3"> I have a boat</label>
+  <label for="body parts">Choose what you are looking to workout:</label>
+
+<select name=“bodyParts" id=“bodyParts”>
+  <option value=“shoulders">Shoulders</option>
+  <option value=“chest">Chest/option>
+  <option value=“biceps">Biceps</option>
+  <option value=“triceps">Triceps</option>
+  <option value=“back">Back</option>
+  <option value=“abs">Abs</option>
+  <option value=“quads">Quads</option>
+  <option value=“hammies">Hammies</option>
+  <option value=“ass">Ass</option>
+  <option value=“caffs">Caffs</option>
+</select>
 </form>
             </div>
         </main>
     `;
 }
+
+// function getBodyPart() {
+//     $('.submit-btn').click(function () {
+//         let bodyPart = {bodyPart: $(this).siblings(())}
+//     })
+// }

@@ -3,22 +3,22 @@
  * @param URI
  * @returns {*}
  */
-import Home from "./views/Home";
-import Workouts from "./views/Workouts";
+import Home from "./views/Home.js";
+import Workouts from "./views/Workouts.js";
 
 export default function router(URI) {
     const routes = {
-        '/': {
+        '/home': {
             returnView: Home,
             state: {},
-            uri: '/',
+            uri: '/home',
             title: 'Home',
         },
         '/workouts': {
-            returnView: Workouts,
+        returnView: Workouts,
             state: {},
             uri: '/workouts',
-            title: 'Workouts', viewEvent: WorkoutEvent
+            title: 'Workouts'
         }
 
     };
