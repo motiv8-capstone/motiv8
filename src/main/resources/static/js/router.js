@@ -4,6 +4,7 @@
  * @returns {*}
  */
 import Home from "./views/Home";
+import Workouts from "./views/Workouts";
 
 export default function router(URI) {
     const routes = {
@@ -12,6 +13,12 @@ export default function router(URI) {
             state: {},
             uri: '/',
             title: 'Home',
+        },
+        '/workouts': {
+            returnView: Workouts,
+            state: {},
+            uri: '/workouts',
+            title: 'Workouts', viewEvent: WorkoutEvent
         }
 
     };
