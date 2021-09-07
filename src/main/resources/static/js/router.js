@@ -1,6 +1,8 @@
 import Home from "./views/Home.js";
 import Workouts from "./views/Workouts.js";
-import LoginEvent from "./auth";
+import LoginEvent from "./auth.js";
+import Error404 from "./views/Error404.js";
+
 /**
  * Returns the route object for a specific route based on the given URI
  * @param URI
@@ -17,7 +19,7 @@ export default function router(URI) {
             title: 'Home',
         },
         '/workouts': {
-        returnView: Workouts,
+            returnView: Workouts,
             state: {},
             uri: '/workouts',
             title: 'Workouts',
@@ -30,6 +32,7 @@ export default function router(URI) {
             uri: location.pathname,
             title: ' ERROR',
         },
+
 
     };
 
