@@ -11,7 +11,6 @@ import {getHeaders} from "./auth.js";
 export default function createView(URI) {
 
     let route = router(URI);
-    console.log(route)
     // if route is invalid, return a 404 page
 
     // change view to loading screen

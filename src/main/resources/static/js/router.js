@@ -1,5 +1,5 @@
 import Home from "./views/Home.js";
-import Workouts from "./views/Workouts.js";
+import Workouts, {PostEvent} from "./views/Workouts.js";
 import LoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
 
@@ -23,7 +23,7 @@ export default function router(URI) {
             state: {},
             uri: '/workouts',
             title: 'Workouts',
-            viewEvents: LoginEvent
+            viewEvents: PostEvent
         }
         ,
         '/error': {
