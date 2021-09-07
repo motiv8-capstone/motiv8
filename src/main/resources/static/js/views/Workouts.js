@@ -22,14 +22,15 @@ export default function Workouts(props) {
 <button type="submit" class="submit-btn">Submit</button>
 </form>
 
+<div id="workout-container">
+	 
+</div>
+
     `;
 }
 
 
-
-
 export function getBodyPart() {
-	console.log("click event fired")
 	$(".submit-btn")
 		.click(function () {
 			let selectOption = $("#bodyParts :selected")
@@ -47,7 +48,11 @@ export function getBodyPart() {
 				}
 			})
 				.then(response => {
-					console.log(response);
+					return (response.json());
+				})
+				.then(function (data) {
+					console.log(data)
+					appendAllWorkoutData(filterWorkoutObject(data))
 				})
 				.catch(err => {
 					console.error(err);
@@ -55,4 +60,40 @@ export function getBodyPart() {
 
 		})
 
+}
+
+function filterWorkoutObject(data) {
+	let workoutObjArr = [];
+	for(let i = 0; i < data.length; i++){
+		workoutObjArr.push({
+			bodyPart: data[i].bodyPart,
+			equipment: data[i].equipment,
+			gifUrl: data[i].gifUrl,
+			id: data[i].id,
+			name: data[i].name,
+			target: data[i].target
+		})
+	}
+	return workoutObjArr;
+}
+
+function appendAllWorkoutData(workoutArr) {
+	$('#workout-container')
+		.empty()
+	workoutArr.forEach(function (obj) {
+		$('#workout-container')
+			.append(getWeatherCard(obj))
+	})
+}
+
+
+function getWeatherCard(weatherObj) {
+	let weatherCard = $(`<div class="card col-md-2 px-3 mb-2 mt-2"></div>`);
+
+	weatherCard.append(
+		`<div class="card-header date">${weatherObj.bodyPart}</div>
+		<div class="card-body">
+		<div class="temp">${weatherObj.equipment} </div>`
+	)
+	return weatherCard
 }
