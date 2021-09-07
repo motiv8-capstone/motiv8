@@ -1,10 +1,12 @@
+import Home from "./views/Home.js";
+import Workouts from "./views/Workouts.js";
+import LoginEvent from "./auth";
 /**
  * Returns the route object for a specific route based on the given URI
  * @param URI
  * @returns {*}
  */
-import Home from "./views/Home.js";
-import Workouts from "./views/Workouts.js";
+
 
 export default function router(URI) {
     const routes = {
@@ -18,8 +20,16 @@ export default function router(URI) {
         returnView: Workouts,
             state: {},
             uri: '/workouts',
-            title: 'Workouts'
+            title: 'Workouts',
+            viewEvents: LoginEvent
         }
+        ,
+        '/error': {
+            returnView: Error404,
+            state: {},
+            uri: location.pathname,
+            title: ' ERROR',
+        },
 
     };
 

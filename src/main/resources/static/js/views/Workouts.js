@@ -26,6 +26,8 @@ export default function Workouts(props) {
     `;
 }
 
+
+
 // function getBodyPart() {
 //     $('.submit-btn').click(function () {
 //         let bodyPart = {bodyPart: $(this).siblings(())}
