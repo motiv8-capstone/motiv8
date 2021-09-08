@@ -47,9 +47,11 @@ export function getCalories() {
                 .then(response => {
                     return (response.json());
                 })
-                .then(function (data)){
+                .then(function (data){
                 console.log(data)
+                }).catch(err => {
+                console.log(err)
+            })
 
-            }
         })
 }
