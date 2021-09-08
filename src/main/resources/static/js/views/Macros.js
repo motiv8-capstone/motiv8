@@ -32,7 +32,24 @@ export default function Macros(props) {
 export function getCalories() {
     $(".submit-calorie-btn")
         .click(function () {
-            let select
-                }
+            let selectOption = $(".age :selected")
+                .val();
 
+            console.log(selectOption)
+
+            fetch(`fitness-calculator.p.rapidapi.com/${selectOption}`,{
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+                "x-rapidapi-key": "14c61813b9msh668ee17878a077bp13699ejsn8ba42420bfe2"
+            }
+            })
+                .then(response => {
+                    return (response.json());
+                })
+                .then(function (data)){
+                console.log(data)
+
+            }
+        })
 }
