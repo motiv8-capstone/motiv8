@@ -2,6 +2,8 @@ import Home from "./views/Home.js";
 import Workouts, {getBodyPart} from "./views/Workouts.js";
 import LoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
+import Register, {RegisterEvent} from "./views/Register.js";
+
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -31,6 +33,15 @@ export default function router(URI) {
             uri: location.pathname,
             title: ' ERROR',
         },
+        '/register': {
+            returnView: Register,
+            state: {
+                users: "/users"
+            },
+            uri: '/register',
+            title: 'Register',
+            viewEvent: RegisterEvent
+        }
 
 
     };
