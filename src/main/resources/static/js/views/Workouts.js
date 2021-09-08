@@ -22,7 +22,7 @@ export default function Workouts(props) {
 <button type="submit" class="submit-btn">Submit</button>
 </form>
 
-<div id="workout-container">
+<div id="workout-container" class="row">
 	 
 </div>
 
@@ -87,13 +87,16 @@ function appendAllWorkoutData(workoutArr) {
 }
 
 
-function getWeatherCard(weatherObj) {
-	let weatherCard = $(`<div class="card col-md-2 px-3 mb-2 mt-2"></div>`);
+function getWeatherCard(workoutObj) {
+	let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
 
-	weatherCard.append(
-		`<div class="card-header date">${weatherObj.bodyPart}</div>
+	workoutsCard.append(
+		`<div class="card-header date">${workoutObj.bodyPart}</div>
 		<div class="card-body">
-		<div class="temp">${weatherObj.equipment} </div>`
+		<div class="name">${workoutObj.name}</div>
+		<div class="equipment">${workoutObj.equipment} </div>
+		<img class="gif" src="${workoutObj.gifUrl}">
+		`
 	)
-	return weatherCard
+	return workoutsCard
 }
