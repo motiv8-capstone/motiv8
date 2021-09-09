@@ -74,6 +74,7 @@ export function getCalories() {
 				})
 				.then(function (data) {
 					console.log(data)
+					alert(data.calorie)
 				})
 				.catch(err => {
 					console.log(err)
