@@ -7,6 +7,7 @@ import Macros, {getCalories} from "./views/Macros.js";
 
 import Register, {RegisterEvent} from "./views/Register.js";
 import Login from "./views/Login.js";
+import {playlistEvent} from "./views/Profile";
 
 
 
@@ -60,6 +61,13 @@ export default function router(URI) {
             uri: '/login',
             title: 'Login',
             viewEvent: LoginEvent
+        },
+        '/profile':{
+            returnView: Profile,
+            state: {},
+            uri: '/profile',
+            title: 'Profile',
+            viewEvent: playlistEvent
         }
 
 
