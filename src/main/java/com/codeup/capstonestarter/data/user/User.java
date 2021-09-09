@@ -1,7 +1,11 @@
 package com.codeup.capstonestarter.data.user;
 
+import com.codeup.capstonestarter.data.workouts.Workouts;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Collection;
 
 @Entity
 @Table(name="users")
@@ -21,6 +25,11 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private Collection<Workouts> workouts;
+
+
 
     public User(Long id, String username, String password, String email) {
         this.id = id;
@@ -30,6 +39,14 @@ public class User {
     }
 
     public User(){}
+
+    public Collection<Workouts> getWorkouts() {
+        return workouts;
+    }
+
+    public void setWorkouts(Collection<Workouts> workouts) {
+        this.workouts = workouts;
+    }
 
     public Long getId() {
         return id;
