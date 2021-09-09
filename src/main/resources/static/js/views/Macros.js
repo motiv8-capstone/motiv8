@@ -40,7 +40,9 @@ export default function Macros(props) {
  <button type="submit" class="submit-calorie-btn">Calculate Calories!</button>
 </form>
 
-<div id="calorie-calculator" class="row"></div>
+<div id="macro-container" class="row">
+
+</div>
     `
 }
 
@@ -74,7 +76,7 @@ export function getCalories() {
 				})
 				.then(function (data) {
 					console.log(data)
-					alert(data.calorie)
+					alert(`Proper calorie intake should be: ${data.calorie} calories`)
 				})
 				.catch(err => {
 					console.log(err)
