@@ -7,12 +7,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 @Entity
-@Table(name="workouts")
+@Table(name="workoutPlaylists")
 public class Workouts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String bodyPart;
@@ -36,8 +39,9 @@ public class Workouts {
 
 
 
-    public Workouts(Long id, String bodyPart, String primaryMuscle, String equipment, String gifUrl, int rating) {
+    public Workouts(Long id, String name, String bodyPart, String primaryMuscle, String equipment, String gifUrl, int rating) {
         this.id = id;
+        this.name = name;
         this.bodyPart = bodyPart;
         this.primaryMuscle = primaryMuscle;
         this.equipment = equipment;
@@ -54,6 +58,14 @@ public class Workouts {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {
