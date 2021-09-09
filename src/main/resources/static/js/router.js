@@ -2,7 +2,11 @@ import Home from "./views/Home.js";
 import Workouts, {getBodyPart} from "./views/Workouts.js";
 import LoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
+
+import Macros, {getCalories} from "./views/Macros.js";
+
 import Register, {RegisterEvent} from "./views/Register.js";
+
 
 
 /**
@@ -32,6 +36,13 @@ export default function router(URI) {
             state: {},
             uri: location.pathname,
             title: ' ERROR',
+        },
+        '/macros':{
+            returnView: Macros,
+            state: {},
+            uri: '/macros',
+            title: 'Macros',
+            viewEvent: getCalories
         },
         '/register': {
             returnView: Register,
