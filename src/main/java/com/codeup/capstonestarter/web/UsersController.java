@@ -5,7 +5,7 @@ import com.codeup.capstonestarter.data.user.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/users", headers = "Accept=application/json")
+@RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
     private final UserRepository userRepository;

@@ -49,7 +49,7 @@ function registerUser() {
 				body: JSON.stringify(userObj)
 			};
 
-			fetch("http://localhost:8080/users", request)
+			fetch("http://localhost:8080/api/users", request)
 				.then((response) => {
 					console.log(response.status)
 				})
