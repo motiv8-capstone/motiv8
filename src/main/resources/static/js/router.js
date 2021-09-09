@@ -6,6 +6,7 @@ import Error404 from "./views/Error404.js";
 import Macros, {getCalories} from "./views/Macros.js";
 
 import Register, {RegisterEvent} from "./views/Register.js";
+import Login from "./views/Login";
 
 
 
@@ -46,12 +47,17 @@ export default function router(URI) {
         },
         '/register': {
             returnView: Register,
-            state: {
-                users: "/users"
-            },
+            state: {},
             uri: '/register',
             title: 'Register',
             viewEvent: RegisterEvent
+        },
+        '/login':{
+            returnView: Login,
+            state: {},
+            uri: '/login',
+            title: 'Login',
+            viewEvent: LoginEvent
         }
 
 
