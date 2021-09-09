@@ -6,7 +6,7 @@ import Error404 from "./views/Error404.js";
 import Macros, {getCalories} from "./views/Macros.js";
 
 import Register, {RegisterEvent} from "./views/Register.js";
-import Login from "./views/Login";
+import Login from "./views/Login.js";
 
 
 
@@ -19,10 +19,10 @@ import Login from "./views/Login";
 
 export default function router(URI) {
     const routes = {
-        '/home': {
+        '/': {
             returnView: Home,
             state: {},
-            uri: '/home',
+            uri: '/',
             title: 'Home',
         },
         '/workouts': {
