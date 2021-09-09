@@ -1,5 +1,5 @@
 import Home from "./views/Home.js";
-import Workouts, {getBodyPart} from "./views/Workouts.js";
+import Workouts, {init} from "./views/Workouts.js";
 import LoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
 
@@ -27,10 +27,12 @@ export default function router(URI) {
         },
         '/workouts': {
             returnView: Workouts,
-            state: {},
+            state: {
+                workouts: '/api/workouts'
+            },
             uri: '/workouts',
             title: 'Workouts',
-            viewEvent: getBodyPart
+            viewEvent: init
         },
         '/error': {
             returnView: Error404,

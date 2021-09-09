@@ -31,8 +31,14 @@ export default function Workouts(props) {
     `;
 }
 
+export function init(){
+	getBodyPart()
+	addWorkoutEvent()
+}
 
-export function getBodyPart() {
+
+
+function getBodyPart() {
     $(".submit-btn")
         .click(function () {
             let selectOption = $("#bodyParts :selected")
@@ -106,8 +112,7 @@ function getWorkoutCard(workoutObj) {
 			<option value="5">5</option>
 		</select>
 		<img  alt="" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
-		<button id="workout-submit-btn" class="btn">Select</button></form>
-		
+		<button type="submit" id="workout-submit-btn">Select</button></form>
 		`
     )
     return workoutsCard
@@ -117,6 +122,7 @@ function getWorkoutCard(workoutObj) {
 function addWorkoutEvent() {
     $("#workout-submit-btn")
         .click(function () {
+			console.log("click event has fired off")
             let selectedWorkout = {
                 bodyPart: $("#bodyPart").val(),
                 equipment: $("#equipment").val(),
