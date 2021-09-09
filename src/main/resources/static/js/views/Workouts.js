@@ -64,7 +64,7 @@ export function getBodyPart() {
 
 function filterWorkoutObject(data) {
 	let workoutObjArr = [];
-	for(let i = 0; i < data.length; i++){
+	for (let i = 0; i < data.length; i++) {
 		workoutObjArr.push({
 			bodyPart: data[i].bodyPart,
 			equipment: data[i].equipment,
@@ -82,21 +82,40 @@ function appendAllWorkoutData(workoutArr) {
 		.empty()
 	workoutArr.forEach(function (obj) {
 		$('#workout-container')
-			.append(getWeatherCard(obj))
+			.append(getWorkoutCard(obj))
 	})
 }
 
 
-function getWeatherCard(workoutObj) {
+function getWorkoutCard(workoutObj) {
 	let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
 
 	workoutsCard.append(
-		`<div class="card-header date">${workoutObj.bodyPart}</div>
-		<div class="card-body">
-		<div class="name">${workoutObj.name}</div>
-		<div class="equipment">${workoutObj.equipment} </div>
-		<img class="gif" src="${workoutObj.gifUrl}">
+		`<form>
+		<input class="card-header" id="bodyPart" readonly>${workoutObj.bodyPart}</input>
+		<input id="name" readonly>${workoutObj.name}</input>
+		<input id="equipment" readonly>${workoutObj.equipment} </input>
+		<input id="target" readonly>${workoutObj.target} </input>
+		<select name="rating" id="rating">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+		<img  alt="" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
+		<button id="workout-submit-btn" class="btn">Select</button></form>
+		
 		`
 	)
 	return workoutsCard
+}
+
+
+function addWorkoutEvent() {
+	$("#workout-submit-btn")
+		.click(function () {
+
+
+		})
 }
