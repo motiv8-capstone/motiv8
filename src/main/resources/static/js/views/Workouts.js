@@ -119,20 +119,27 @@ function addWorkoutEvent() {
         .click(function () {
             let selectedWorkout = {
                 bodyPart: $("#bodyPart").val(),
-                name: $("#name").val(),
                 equipment: $("#equipment").val(),
-                target: $("#target").val(),
+                gif_url: $("#gifUrl").val(),
+                name: $("#name").val(),
+                primary_muscle: $("#target").val(),
                 rating: $("#rating :selected").val()
-
             }
             let request = {
-                method: 'POST',
-                headers: {'Content-Type': 'application/api/workouts'},
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(selectedWorkout)
-
-
             }
-            fetch("http://localhost:8080/api/workouts", request).then(createView("/posts"));
+            fetch("http://localhost:8080/api/workouts", request)
+                .then(res => {
+                    console.log(res.status)
+                    createView("/workouts")
+                })
+                .catch(error => {
+                    console.log(error);
+                    createView("/workouts")
+                })
+
         })
 
 
