@@ -1,11 +1,12 @@
 import Home from "./views/Home.js";
-import Workouts, {init} from "./views/Workouts.js";
+import {init} from "./views/Workouts.js";
 import LoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
 import Macros, {getCalories} from "./views/Macros.js";
 import Register, {RegisterEvent} from "./views/Register.js";
 import Login from "./views/Login.js";
 import Profile, {playlistEvent} from "./views/Profile.js";
+import Workouts from "./views/Workouts.js";
 
 
 

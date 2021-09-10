@@ -21,7 +21,7 @@ export default function Workouts(props) {
   <option value="ass">Ass</option>
   <option value="caffs">Caffs</option>
 </select>
-<button type="submit" class="submit-btn">Submit</button>
+<button type="submit" id="submit-btn">Submit</button>
 </form>
 
 <div id="workout-container" class="row">
@@ -32,14 +32,13 @@ export default function Workouts(props) {
 }
 
 export function init(){
-	getBodyPart()
-	addWorkoutEvent()
+	getBodyPart();
 }
 
 
 
 function getBodyPart() {
-    $(".submit-btn")
+    $("#submit-btn")
         .click(function () {
             let selectOption = $("#bodyParts :selected")
                 .val();
@@ -92,6 +91,7 @@ function appendAllWorkoutData(workoutArr) {
         $('#workout-container')
             .append(getWorkoutCard(obj))
     })
+
 }
 
 
@@ -99,7 +99,7 @@ function getWorkoutCard(workoutObj) {
     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
 
     workoutsCard.append(
-        `<form>
+        `
 		<input class="card-header" id="bodyPart" readonly>${workoutObj.bodyPart}</input>
 		<input id="name" readonly>${workoutObj.name}</input>
 		<input id="equipment" readonly>${workoutObj.equipment} </input>
@@ -112,16 +112,15 @@ function getWorkoutCard(workoutObj) {
 			<option value="5">5</option>
 		</select>
 		<img  alt="" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
-		<button type="submit" id="workout-submit-btn">Select</button></form>
+		<button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button>
 		`
     )
     return workoutsCard
 }
-
+addWorkoutEvent();
 
 function addWorkoutEvent() {
-    $("#workout-submit-btn")
-        .click(function () {
+    $(".workout-submit-btn").click(function () {
 			console.log("click event has fired off")
             let selectedWorkout = {
                 bodyPart: $("#bodyPart").val(),
