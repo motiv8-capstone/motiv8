@@ -66,7 +66,6 @@ function getBodyPart() {
                 });
 
         })
-
 }
 
 function filterWorkoutObject(data) {
@@ -91,7 +90,7 @@ function appendAllWorkoutData(workoutArr) {
         $('#workout-container')
             .append(getWorkoutCard(obj))
     })
-
+    addWorkoutEvent();
 }
 
 
@@ -99,7 +98,7 @@ function getWorkoutCard(workoutObj) {
     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
 
     workoutsCard.append(
-        `
+        `<form>
 		<input class="card-header" id="bodyPart" readonly>${workoutObj.bodyPart}</input>
 		<input id="name" readonly>${workoutObj.name}</input>
 		<input id="equipment" readonly>${workoutObj.equipment} </input>
@@ -112,24 +111,28 @@ function getWorkoutCard(workoutObj) {
 			<option value="5">5</option>
 		</select>
 		<img  alt="" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
-		<button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button>
+		<button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button></form>
 		`
     )
     return workoutsCard
 }
-addWorkoutEvent();
+
 
 function addWorkoutEvent() {
+
     $(".workout-submit-btn").click(function () {
+        $(this)
 			console.log("click event has fired off")
             let selectedWorkout = {
                 bodyPart: $("#bodyPart").val(),
                 equipment: $("#equipment").val(),
-                gif_url: $("#gifUrl").val(),
+                gif_url: $("#gifUrl").attr('src'),
                 name: $("#name").val(),
                 primary_muscle: $("#target").val(),
                 rating: $("#rating :selected").val()
             }
+            console.log(selectedWorkout.gif_url)
+            console.log(selectedWorkout.bodyPart)
             let request = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -146,4 +149,5 @@ function addWorkoutEvent() {
                 })
 
         })
+
 }
