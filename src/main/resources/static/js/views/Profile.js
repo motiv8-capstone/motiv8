@@ -1,4 +1,4 @@
-import createView from "../createView";
+import createView from "../createView.js";
 
 
 export default function Profile(props) {
