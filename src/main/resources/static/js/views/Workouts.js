@@ -96,13 +96,12 @@ function appendAllWorkoutData(workoutArr) {
 
 function getWorkoutCard(workoutObj) {
     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
-
     workoutsCard.append(
-        `<form>
-		<input class="card-header" id="bodyPart" readonly>${workoutObj.bodyPart}</input>
-		<input id="name" readonly>${workoutObj.name}</input>
-		<input id="equipment" readonly>${workoutObj.equipment} </input>
-		<input id="target" readonly>${workoutObj.target} </input>
+        `<div class="workout-card"><form>
+		<input class="card-header" id="bodyPart" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>
+		<input id="name" value="${workoutObj.name}"  readonly>${workoutObj.name}</input>
+		<input id="equipment" value="${workoutObj.equipment}" readonly>${workoutObj.equipment} </input>
+		<input id="target" value="${workoutObj.target}" readonly>${workoutObj.target} </input>
 		<select name="rating" id="rating">
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -110,8 +109,8 @@ function getWorkoutCard(workoutObj) {
 			<option value="4">4</option>
 			<option value="5">5</option>
 		</select>
-		<img  alt="" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
-		<button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button></form>
+		<img alt="" data-id="${workoutObj.gifUrl}" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
+		<button type="submit" class="workout-submit-btn">Select</button></form></div>
 		`
     )
     return workoutsCard
@@ -120,19 +119,22 @@ function getWorkoutCard(workoutObj) {
 
 function addWorkoutEvent() {
 
-    $(".workout-submit-btn").click(function () {
-        $(this)
+   $('.workout-submit-btn').click(function (e) {
+
 			console.log("click event has fired off")
             let selectedWorkout = {
                 bodyPart: $("#bodyPart").val(),
                 equipment: $("#equipment").val(),
-                gif_url: $("#gifUrl").attr('src'),
+                gif_url: $("#gifUrl").attr('src').toString(),
                 name: $("#name").val(),
                 primary_muscle: $("#target").val(),
                 rating: $("#rating :selected").val()
             }
             console.log(selectedWorkout.gif_url)
             console.log(selectedWorkout.bodyPart)
+            console.log(selectedWorkout.name)
+            console.log(selectedWorkout.primary_muscle)
+            console.log(selectedWorkout.equipment)
             let request = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},

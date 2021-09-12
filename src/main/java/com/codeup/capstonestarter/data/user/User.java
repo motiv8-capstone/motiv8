@@ -1,6 +1,6 @@
 package com.codeup.capstonestarter.data.user;
 
-import com.codeup.capstonestarter.data.workouts.Workouts;
+import com.codeup.capstonestarter.data.workouts.Workout;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -25,28 +25,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties("user")
-    private Collection<Workouts> workouts;
-
-
-
-    public User(Long id, String username, String password, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
     public User(){}
-
-    public Collection<Workouts> getWorkouts() {
-        return workouts;
-    }
-
-    public void setWorkouts(Collection<Workouts> workouts) {
-        this.workouts = workouts;
-    }
 
     public Long getId() {
         return id;
