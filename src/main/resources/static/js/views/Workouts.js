@@ -93,9 +93,13 @@ function appendAllWorkoutData(workoutArr) {
     addWorkoutEvent();
 }
 
+function showGif() {
+    console.log("in show")
+    $('#gifUrl').style.visibility = 'visible';
+}
 
 function getWorkoutCard(workoutObj) {
-    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
+    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2" onmouseover=showGif()></div>`);
 
     workoutsCard.append(
         `<form>
@@ -110,13 +114,12 @@ function getWorkoutCard(workoutObj) {
 			<option value="4">4</option>
 			<option value="5">5</option>
 		</select>
-		<img  alt="" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
+		<img  alt="" class="gif" id="gifUrl" style="visibility:hidden" src="${workoutObj.gifUrl}">
 		<button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button></form>
 		`
     )
     return workoutsCard
 }
-
 
 function addWorkoutEvent() {
 
