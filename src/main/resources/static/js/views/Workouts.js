@@ -1,5 +1,7 @@
+import createView from "../createView.js";
+
 export default function Workouts(props) {
-	return `
+    return `
         <header>
             <h1>Workout Page</h1>
         </header>
@@ -19,7 +21,7 @@ export default function Workouts(props) {
   <option value="ass">Ass</option>
   <option value="caffs">Caffs</option>
 </select>
-<button type="submit" class="submit-btn">Submit</button>
+<button type="submit" id="submit-btn">Submit</button>
 </form>
 
 <div id="workout-container" class="row">
@@ -29,74 +31,125 @@ export default function Workouts(props) {
     `;
 }
 
-
-export function getBodyPart() {
-	$(".submit-btn")
-		.click(function () {
-			let selectOption = $("#bodyParts :selected")
-				.val();
+export function init(){
+	getBodyPart();
+}
 
 
-			console.log(selectOption)
+
+function getBodyPart() {
+    $("#submit-btn")
+        .click(function () {
+            let selectOption = $("#bodyParts :selected")
+                .val();
 
 
-			fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${selectOption}`, {
-				"method": "GET",
-				"headers": {
-					"x-rapidapi-host": "exercisedb.p.rapidapi.com",
-					"x-rapidapi-key": "0fda1c2912msh4a1299d685685e4p139959jsn8a0fbfe6c5a1"
-				}
-			})
-				.then(response => {
-					return (response.json());
-				})
-				.then(function (data) {
-					console.log(data)
-					appendAllWorkoutData(filterWorkoutObject(data))
-				})
-				.catch(err => {
-					console.error(err);
-				});
+            console.log(selectOption)
 
-		})
 
+            fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${selectOption}`, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+                    "x-rapidapi-key": "0fda1c2912msh4a1299d685685e4p139959jsn8a0fbfe6c5a1"
+                }
+            })
+                .then(response => {
+                    return (response.json());
+                })
+                .then(function (data) {
+                    console.log(data)
+                    appendAllWorkoutData(filterWorkoutObject(data))
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+
+        })
 }
 
 function filterWorkoutObject(data) {
-	let workoutObjArr = [];
-	for(let i = 0; i < data.length; i++){
-		workoutObjArr.push({
-			bodyPart: data[i].bodyPart,
-			equipment: data[i].equipment,
-			gifUrl: data[i].gifUrl,
-			id: data[i].id,
-			name: data[i].name,
-			target: data[i].target
-		})
-	}
-	return workoutObjArr;
+    let workoutObjArr = [];
+    for (let i = 0; i < data.length; i++) {
+        workoutObjArr.push({
+            bodyPart: data[i].bodyPart,
+            equipment: data[i].equipment,
+            gifUrl: data[i].gifUrl,
+            id: data[i].id,
+            name: data[i].name,
+            target: data[i].target
+        })
+    }
+    return workoutObjArr;
 }
 
 function appendAllWorkoutData(workoutArr) {
-	$('#workout-container')
-		.empty()
-	workoutArr.forEach(function (obj) {
-		$('#workout-container')
-			.append(getWeatherCard(obj))
-	})
+    $('#workout-container')
+        .empty()
+    workoutArr.forEach(function (obj) {
+        $('#workout-container')
+            .append(getWorkoutCard(obj))
+    })
+    addWorkoutEvent();
 }
 
 
-function getWeatherCard(workoutObj) {
-	let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
-
-	workoutsCard.append(
-		`<div class="card-header date">${workoutObj.bodyPart}</div>
-		<div class="card-body">
-		<div class="name">${workoutObj.name}</div>
-		<div class="equipment">${workoutObj.equipment} </div>
-		<img class="gif" src="${workoutObj.gifUrl}">
+function getWorkoutCard(workoutObj) {
+    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
+    workoutsCard.append(
+        `<div class="workout-card"><form>
+		<input class="card-header" id="bodyPart" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>
+		<input id="name" value="${workoutObj.name}"  readonly>${workoutObj.name}</input>
+		<input id="equipment" value="${workoutObj.equipment}" readonly>${workoutObj.equipment} </input>
+		<input id="target" value="${workoutObj.target}" readonly>${workoutObj.target} </input>
+		<select name="rating" id="rating">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+		<img alt="" data-id="${workoutObj.gifUrl}" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
+		<button type="submit" class="workout-submit-btn">Select</button></form></div>
 		`
-	)
-	return workoutsCard
+    )
+    return workoutsCard
+}
+
+
+function addWorkoutEvent() {
+
+   $('.workout-submit-btn').click(function (e) {
+
+			console.log("click event has fired off")
+            let selectedWorkout = {
+                bodyPart: $("#bodyPart").val(),
+                equipment: $("#equipment").val(),
+                gif_url: $("#gifUrl").attr('src').toString(),
+                name: $("#name").val(),
+                primary_muscle: $("#target").val(),
+                rating: $("#rating :selected").val()
+            }
+            console.log(selectedWorkout.gif_url)
+            console.log(selectedWorkout.bodyPart)
+            console.log(selectedWorkout.name)
+            console.log(selectedWorkout.primary_muscle)
+            console.log(selectedWorkout.equipment)
+            let request = {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(selectedWorkout)
+            }
+            fetch("http://localhost:8080/api/workouts", request)
+                .then(res => {
+                    console.log(res.status)
+                    createView("/workouts")
+                })
+                .catch(error => {
+                    console.log(error);
+                    createView("/workouts")
+                })
+
+        })
+
 }

@@ -1,12 +1,12 @@
 import Home from "./views/Home.js";
-import Workouts, {getBodyPart} from "./views/Workouts.js";
+import {init} from "./views/Workouts.js";
 import LoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
-
 import Macros, {getCalories} from "./views/Macros.js";
-
 import Register, {RegisterEvent} from "./views/Register.js";
 import Login from "./views/Login.js";
+import Profile, {playlistEvent} from "./views/Profile.js";
+import Workouts from "./views/Workouts.js";
 
 
 
@@ -27,10 +27,12 @@ export default function router(URI) {
         },
         '/workouts': {
             returnView: Workouts,
-            state: {},
+            state: {
+                workouts: '/api/workouts'
+            },
             uri: '/workouts',
             title: 'Workouts',
-            viewEvent: getBodyPart
+            viewEvent: init
         },
         '/error': {
             returnView: Error404,
@@ -58,6 +60,13 @@ export default function router(URI) {
             uri: '/login',
             title: 'Login',
             viewEvent: LoginEvent
+        },
+        '/profile':{
+            returnView: Profile,
+            state: {},
+            uri: '/profile',
+            title: 'Profile',
+            viewEvent: playlistEvent
         }
 
 
