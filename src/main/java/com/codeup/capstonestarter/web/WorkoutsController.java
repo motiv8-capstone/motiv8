@@ -18,21 +18,24 @@ public class WorkoutsController {
         this.workoutsRepository = workoutsRepository;
     }
 
+
+
+
     @GetMapping
     private List<Workout> getWorkouts() {
         return workoutsRepository.findAll();
     }
 
+    @GetMapping("/findByBodyPart")
+    private List<Workout> getByBodyPart(@RequestParam String bodypart){
+        return workoutsRepository.findByBodypart(bodypart);
+    }
+
 
     @PostMapping
     private void createWorkout(@RequestBody Workout[] workouts) {
-
-
             workoutsRepository.saveAll(Arrays.asList(workouts));
-
-
     }
-
 
     @DeleteMapping("{id}")
     private void deleteWorkout(@PathVariable Long id) {
