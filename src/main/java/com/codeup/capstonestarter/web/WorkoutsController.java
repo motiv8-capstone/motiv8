@@ -1,10 +1,11 @@
 package com.codeup.capstonestarter.web;
 
 
-import com.codeup.capstonestarter.data.workouts.Workouts;
+import com.codeup.capstonestarter.data.workouts.Workout;
 import com.codeup.capstonestarter.data.workouts.WorkoutsRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,27 +19,25 @@ public class WorkoutsController {
     }
 
     @GetMapping
-    private List<Workouts> getWorkouts(){
+    private List<Workout> getWorkouts() {
         return workoutsRepository.findAll();
     }
 
 
     @PostMapping
-    private void createWorkout(@RequestBody Workouts newPlaylist){
+    private void createWorkout(@RequestBody Workout[] workouts) {
 
-        System.out.println(newPlaylist.getBodyPart());
-        System.out.println(newPlaylist.getUser());
 
-        workoutsRepository.save(newPlaylist);
+            workoutsRepository.saveAll(Arrays.asList(workouts));
+
+
     }
 
 
     @DeleteMapping("{id}")
-    private void deleteWorkout(@PathVariable Long id){
+    private void deleteWorkout(@PathVariable Long id) {
         workoutsRepository.deleteById(id);
     }
-
-
 
 
 }
