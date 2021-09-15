@@ -82,9 +82,14 @@ function appendAllWorkoutData(workoutArr) {
     addWorkoutEvent()
 }
 
+function showGif() {
+    console.log("in show")
+    $('#gifUrl').style.visibility = 'visible';
+}
 
 function getWorkoutCard(workoutObj) {
-    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
+    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2" onmouseover=showGif()></div>`);
+
     workoutsCard.append(
         `<div class="workout-card"><form>
 		<input class="card-header" id="bodyPart" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>

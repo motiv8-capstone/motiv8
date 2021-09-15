@@ -2,6 +2,7 @@ export default function Macros(props) {
 	return `
     <header>
     <h1>Calculate Your Calories Yo!</h1>
+    <link rel="stylesheet" href="/style/style.css">
 </header>
 
 <br>
