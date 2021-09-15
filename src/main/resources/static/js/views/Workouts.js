@@ -134,7 +134,7 @@ function addWorkoutEvent() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(selectedWorkout)
             }
-            fetch("http://localhost:8080/api/workouts", request)
+            fetch("http://localhost:8080/api/playlists", request)
                 .then(res => {
                     console.log(res.status)
                     createView("/workouts")
