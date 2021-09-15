@@ -27,8 +27,8 @@ public class WorkoutsController {
     }
 
     @GetMapping("/findByBodyPart")
-    private List<Workout> getByBodyPart(@RequestParam String bodypart){
-        return workoutsRepository.findByBodypart(bodypart);
+    private List<Workout> getByBodyPart(@RequestParam String bodyPart){
+        return workoutsRepository.findByBodyPart(bodyPart);
     }
 
 

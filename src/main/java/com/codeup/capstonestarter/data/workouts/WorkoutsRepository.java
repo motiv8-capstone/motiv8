@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface WorkoutsRepository extends JpaRepository<Workout, Long> {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM workouts WHERE JSON_EXTRACT(workout, '$.bodyPart') = :bodypart")
-    List<Workout> findByBodypart(String bodypart);
+    @Query(nativeQuery = true, value = "SELECT * FROM workouts WHERE JSON_EXTRACT(workout, '$.bodyPart') = :bodyPart")
+    List<Workout> findByBodyPart(String bodyPart);
 
 }

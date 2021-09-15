@@ -47,7 +47,7 @@ function getBodyPart() {
             console.log(selectOption)
 
 
-            fetch(`http://localhost:8080/api/workouts/findByBodyPart?bodypart=${selectOption}`, {
+            fetch(`http://localhost:8080/api/workouts/findByBodyPart?bodyPart=${selectOption}`, {
                 "method": "GET",
                 "headers": {"Content-Type": "application/json"}
             })
@@ -55,8 +55,7 @@ function getBodyPart() {
                     return (response.json());
                 })
                 .then(function (data) {
-                    console.log(JSON.parse(data[0].workout.bodyPart))
-                    appendAllWorkoutData(filterWorkoutObject(data))
+                    appendAllWorkoutData(filterWorkoutObject(data));
                 })
                 .catch(err => {
                     console.error(err);
@@ -68,14 +67,7 @@ function getBodyPart() {
 function filterWorkoutObject(data) {
     let workoutObjArr = [];
     for (let i = 0; i < data.length; i++) {
-        workoutObjArr.push({
-            id: data[i].workout.id,
-            name: data[i].workout.name,
-            bodyPart: data[i].workout.bodyPart,
-            equipment: data[i].workout.equipment,
-            gifUrl: data[i].workout.gifUrl,
-            target: data[i].workout.target
-        })
+        workoutObjArr.push(JSON.parse(data[i].workout))
     }
     return workoutObjArr;
 }
@@ -87,6 +79,7 @@ function appendAllWorkoutData(workoutArr) {
         $('#workout-container')
             .append(getWorkoutCard(obj))
     })
+    addWorkoutEvent()
 }
 
 
@@ -112,40 +105,40 @@ function getWorkoutCard(workoutObj) {
     return workoutsCard
 }
 
-//
-// function addWorkoutEvent() {
-//
-//    $('.workout-submit-btn').click(function (e) {
-//
-// 			console.log("click event has fired off")
-//             let selectedWorkout = {
-//                 bodyPart: $("#bodyPart").val(),
-//                 equipment: $("#equipment").val(),
-//                 gif_url: $("#gifUrl").attr('src').toString(),
-//                 name: $("#name").val(),
-//                 primary_muscle: $("#target").val(),
-//                 rating: $("#rating :selected").val()
-//             }
-//             console.log(selectedWorkout.gif_url)
-//             console.log(selectedWorkout.bodyPart)
-//             console.log(selectedWorkout.name)
-//             console.log(selectedWorkout.primary_muscle)
-//             console.log(selectedWorkout.equipment)
-//             let request = {
-//                 method: "POST",
-//                 headers: {"Content-Type": "application/json"},
-//                 body: JSON.stringify(selectedWorkout)
-//             }
-//             fetch("http://localhost:8080/api/workouts", request)
-//                 .then(res => {
-//                     console.log(res.status)
-//                     createView("/workouts")
-//                 })
-//                 .catch(error => {
-//                     console.log(error);
-//                     createView("/workouts")
-//                 })
-//
-//         })
-//
-// }
+
+function addWorkoutEvent() {
+
+   $('.workout-submit-btn').click(function (e) {
+
+			console.log("click event has fired off")
+            let selectedWorkout = {
+                bodyPart: $("#bodyPart").val(),
+                equipment: $("#equipment").val(),
+                gif_url: $("#gifUrl").attr('src').toString(),
+                name: $("#name").val(),
+                primary_muscle: $("#target").val(),
+                rating: $("#rating :selected").val()
+            }
+            console.log(selectedWorkout.gif_url)
+            console.log(selectedWorkout.bodyPart)
+            console.log(selectedWorkout.name)
+            console.log(selectedWorkout.primary_muscle)
+            console.log(selectedWorkout.equipment)
+            let request = {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(selectedWorkout)
+            }
+            fetch("http://localhost:8080/api/workouts", request)
+                .then(res => {
+                    console.log(res.status)
+                    createView("/workouts")
+                })
+                .catch(error => {
+                    console.log(error);
+                    createView("/workouts")
+                })
+
+        })
+
+}
