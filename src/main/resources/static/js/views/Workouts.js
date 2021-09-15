@@ -47,19 +47,15 @@ function getBodyPart() {
             console.log(selectOption)
 
 
-            fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${selectOption}`, {
+            fetch(`http://localhost:8080/api/workouts/findByBodyPart?bodyPart=${selectOption}`, {
                 "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-                    "x-rapidapi-key": "0fda1c2912msh4a1299d685685e4p139959jsn8a0fbfe6c5a1"
-                }
+                "headers": {"Content-Type": "application/json"}
             })
                 .then(response => {
                     return (response.json());
                 })
                 .then(function (data) {
-                    console.log(data)
-                    appendAllWorkoutData(filterWorkoutObject(data))
+                    appendAllWorkoutData(filterWorkoutObject(data));
                 })
                 .catch(err => {
                     console.error(err);
@@ -71,14 +67,7 @@ function getBodyPart() {
 function filterWorkoutObject(data) {
     let workoutObjArr = [];
     for (let i = 0; i < data.length; i++) {
-        workoutObjArr.push({
-            bodyPart: data[i].bodyPart,
-            equipment: data[i].equipment,
-            gifUrl: data[i].gifUrl,
-            id: data[i].id,
-            name: data[i].name,
-            target: data[i].target
-        })
+        workoutObjArr.push(JSON.parse(data[i].workout))
     }
     return workoutObjArr;
 }
@@ -90,7 +79,7 @@ function appendAllWorkoutData(workoutArr) {
         $('#workout-container')
             .append(getWorkoutCard(obj))
     })
-    addWorkoutEvent();
+    addWorkoutEvent()
 }
 
 function showGif() {
