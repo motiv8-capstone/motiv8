@@ -74,10 +74,11 @@ function deletePlaylist() {
     })
 }
 
+
 export function createPlaylist(){
     $("#playlist-create-btn").click(function(){
         console.log("Clicky");
-        let playlistTitle = {title : $("#playlist-name").val()};
+        let playlistTitle = {title : $("#playlist-title").val()};
 
         let request = {
             method: "POST",
@@ -87,14 +88,13 @@ export function createPlaylist(){
             body: JSON.stringify(playlistTitle)
         };
 
-        fetch("http://localhost:8080/api/profile", request)
+        fetch("http://localhost:8080/api/playlists", request)
             .then((response) => {
                 console.log(response.status)
             })
             .catch(error => {
                 console.log(error)
             })
-
 
 
     })

@@ -42,9 +42,7 @@ function getBodyPart() {
             let selectOption = $("#bodyParts :selected")
                 .val();
 
-
             console.log(selectOption)
-
 
             fetch(`http://localhost:8080/api/workouts/findByBodyPart?bodyPart=${selectOption}`, {
                 "method": "GET",
@@ -119,7 +117,7 @@ function getWorkoutCard(workoutObj) {
       </select>
       <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
       <button type="submit" class="workout-submit-btn">Select</button></form></div>
-      <select name="playlists" id="selectPlaylist"></select>
+      <select name="playlists" class="selectPlaylist"></select>
       `
     )
     return workoutsCard
@@ -152,9 +150,7 @@ function addWorkoutEvent() {
                 console.log(error);
                 createView("/workouts")
             })
-
     })
-
 }
 
 function getAllPlaylist(){
@@ -176,8 +172,8 @@ function getAllPlaylist(){
 
 function createOptions(data){
     for (let i = 0; i < data.length; i++){
-        $("#selectPlaylist").append(`
-        <option class="playlist-choice" id={data[i].id}>${data[i].title}</option>
+        $(".selectPlaylist").append(`
+        <option class="playlist-choice" value={data[i].id}>${data[i].title}</option>
 `)}getIDs()}
 
 //create function that listens for click of select button
@@ -189,7 +185,7 @@ function getIDs(){
     $('.workout-submit-btn').click(function (){
         let workoutID = $(".id").val;
         console.log(workoutID);
-        let playlistID = $(".playlist-choice").attr("id").val();
+        let playlistID = $(".playlist-choice").val();
         console.log(playlistID);
     })
 }

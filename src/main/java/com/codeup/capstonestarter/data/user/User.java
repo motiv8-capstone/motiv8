@@ -1,11 +1,13 @@
 package com.codeup.capstonestarter.data.user;
 
+import com.codeup.capstonestarter.data.playlist.Playlist;
 import com.codeup.capstonestarter.data.workouts.Workout;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -24,6 +26,19 @@ public class User {
     @Email
     @Column(nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private List<Playlist> playlists;
+
+
+    public User(Long id, String username, String password, String email, List<Playlist> playlists) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.playlists = playlists;
+    }
 
     public User(){}
 

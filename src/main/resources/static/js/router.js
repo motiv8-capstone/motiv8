@@ -64,7 +64,9 @@ export default function router(URI) {
         },
         '/profile':{
             returnView: Profile,
-            state: {},
+            state: {
+                playlists: "/api/playlists"
+            },
             uri: '/profile',
             title: 'Profile',
             viewEvent: createPlaylist

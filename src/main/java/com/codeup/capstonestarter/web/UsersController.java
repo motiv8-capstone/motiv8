@@ -29,10 +29,10 @@ public class UsersController {
         userRepository.save(newUser);
     }
 
-
-
-
-
+    @GetMapping("{id}")
+    private User findById(@PathVariable Long id) {
+        return userRepository.findById(id).get();
+    }
 
 
 }
