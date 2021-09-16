@@ -25,9 +25,10 @@ export default function Profile(props) {
     `;
 }
 
-export function playlistEvent(){
+function playlistEvent(){
     getPlaylists();
     deletePlaylist();
+    createPlaylist()
 }
 
 
@@ -37,12 +38,12 @@ function getPlaylists(playlist) {
         $('#playlist').append(`
       
                 <div class="playlist">
-                    <span class="name">${playlist.name}</span>
-                    <span class="bodypart">${playlist.bodyPart}</span>
-                    <span class="equipment">${playlist.equipment}</span>
-                    <span class="muscle">${playlist.primary_muscle}</span>
-                    <span class="gif">${playlist.gif_url}</span>
-                    <span class="rating">${playlist.rating}</span>
+                    <span class="name">${playlist[i].name}</span>
+                    <span class="bodypart">${playlist[i].bodyPart}</span>
+                    <span class="equipment">${playlist[i].equipment}</span>
+                    <span class="muscle">${playlist[i].primary_muscle}</span>
+                    <span class="gif">${playlist[i].gif_url}</span>
+                    <span class="rating">${playlist[i].rating}</span>
                     <div>
                     </div>
                     <button class="delete-playlist-btn" data-id=${playlist.id}>Delete</button>
@@ -73,10 +74,28 @@ function deletePlaylist() {
     })
 }
 
-function createPlaylist(){
-    $("#create-playlist-btn").click(function(){
+export function createPlaylist(){
+    $("#playlist-create-btn").click(function(){
+        console.log("Clicky");
         let playlistTitle = {title : $("#playlist-name").val()};
-    }
 
-    )
+        let request = {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(playlistTitle)
+        };
+
+        fetch("http://localhost:8080/api/profile", request)
+            .then((response) => {
+                console.log(response.status)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+
+
+    })
 }
