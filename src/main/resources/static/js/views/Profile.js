@@ -7,17 +7,26 @@ export default function Profile(props) {
             <h1>Profile Page</h1>
         </header>
         <main>
+        <div>
+        <form id="playlist-create">
+            <label for="playlist-title">Playlist Name</label>
+            <input id="playlist-title" name="playlist-title" type="text">
+            <button type="button" id="playlist-create-btn">Create Playlist</button>
+        </form>
+        </div>
+        
             <div id="playlist">
                 <p>
                     This is your Profile page.
                 </p>    
-                ${getPlaylists}
+                
             </div>
         </main>
     `;
 }
 
 export function playlistEvent(){
+    getPlaylists();
     deletePlaylist();
 }
 
@@ -62,4 +71,12 @@ function deletePlaylist() {
         });
 
     })
+}
+
+function createPlaylist(){
+    $("#create-playlist-btn").click(function(){
+        let playlistTitle = {title : $("#playlist-name").val()};
+    }
+
+    )
 }
