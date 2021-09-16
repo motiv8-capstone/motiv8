@@ -1,4 +1,5 @@
 import createView from "../createView.js";
+import {getHeaders} from "../auth.js";
 
 
 export default function Profile(props) {
@@ -83,9 +84,7 @@ export function createPlaylist(){
 
         let request = {
             method: "POST",
-            headers: {
-                "Content-Type": 'application/json'
-            },
+            headers: getHeaders(),
             body: JSON.stringify(playlistTitle)
         };
 
