@@ -7,7 +7,7 @@ export default function Workouts(props) {
         </header>
  
   <form action="">
-  <label for="body parts">Choose what you are looking to workout:</label>
+  <label for="body parts" class="font">Choose what you are looking to workout:</label>
 
 <select name="bodyParts" id="bodyParts">
   <option value="shoulders">Shoulders</option>
