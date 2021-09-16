@@ -94,6 +94,7 @@ function setWorkoutHoverEvent() {
     // }, function () {
     //     $(this).siblings(".gif").css("display", "none")
     // })
+    $(".gif").css("display", "block");
     const f = new Freezeframe(".gif", {trigger: "hover"});
     f.toggle()
 }
@@ -115,7 +116,7 @@ function getWorkoutCard(workoutObj) {
          <option value="4">4</option>
          <option value="5">5</option>
       </select>
-      <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
+      <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}" style="display:none">
       <button type="submit" class="workout-submit-btn">Select</button></form></div>
       <select name="playlists" class="selectPlaylist"></select>
       `
