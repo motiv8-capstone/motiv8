@@ -80,6 +80,7 @@ export function createPlaylist(){
         console.log("Clicky");
         let playlistTitle = {title : $("#playlist-title").val()};
 
+
         let request = {
             method: "POST",
             headers: {
