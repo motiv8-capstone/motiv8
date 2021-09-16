@@ -31,9 +31,11 @@ export default function Workouts(props) {
     `;
 }
 
-export function init() {
-    getBodyPart();
+export function init(){
+	getBodyPart();
+
 }
+
 
 
 function getBodyPart() {
@@ -78,45 +80,37 @@ function appendAllWorkoutData(workoutArr) {
         $('#workout-container')
             .append(getWorkoutCard(obj))
     })
-    addWorkoutEvent()
-    setWorkoutHoverEvent()
+    addWorkoutEvent();
+    getAllPlaylist();
 }
 
 // function showGif() {
 //     console.log("in show")
-//     $('.gif').style.visibility = 'visible';
+//     $('#gifUrl').style.visibility = 'visible';
 // }
-
-function setWorkoutHoverEvent() {
-    // console.log($(".name"))
-    // console.log($(".gif"))
-    // $(".name").hover(function () {
-    //     $(this).siblings(".gif").css("display", "block")
-    // }, function () {
-    //     $(this).siblings(".gif").css("display", "none")
-    // })
-   const f = new Freezeframe(".gif", {trigger: "hover"});
-   f.toggle()
-}
 
 function getWorkoutCard(workoutObj) {
     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
 
     workoutsCard.append(
         `<div class="workout-card"><form>
-		<input class="card-header body-part" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>
-		<input class="name" value="${workoutObj.name}"  readonly>${workoutObj.name}</input>
-		<input class="equipment" value="${workoutObj.equipment}" readonly>${workoutObj.equipment} </input>
-		<input class="target" value="${workoutObj.target}" readonly>${workoutObj.target} </input>
-		<select name="rating" class="rating">
+		<input class="card-header" id="bodyPart" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>
+		<input id="name" value="${workoutObj.name}"  readonly>${workoutObj.name}</input>
+		<input id="equipment" value="${workoutObj.equipment}" readonly>${workoutObj.equipment} </input>
+		<input id="target" value="${workoutObj.target}" readonly>${workoutObj.target} </input>
+		<select name="rating" id="rating">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
 			<option value="5">5</option>
 		</select>
-		<img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
-		<button type="submit" class="workout-submit-btn">Select</button></form></div>
+		<img alt="" data-id="${workoutObj.gifUrl}" class="gif" id="gifUrl" src="${workoutObj.gifUrl}">
+		<button type="submit" class="workout-submit-btn">Select</button></form>
+		</div>
+		<div id="playlists">
+		<select id="selectPlaylist"></select>
+        </div>
 		`
     )
     return workoutsCard
@@ -125,31 +119,60 @@ function getWorkoutCard(workoutObj) {
 
 function addWorkoutEvent() {
 
-    $('.workout-submit-btn').click(function (e) {
+   $('.workout-submit-btn').click(function (e) {
 
-        let selectedWorkout = {
-            bodyPart: $(".body-part").val(),
-            equipment: $(".equipment").val(),
-            gif_url: $(".gif").attr('src').toString(),
-            name: $(".name").val(),
-            primary_muscle: $(".target").val(),
-            rating: $(".rating :selected").val()
-        }
-        let request = {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(selectedWorkout)
-        }
-        fetch("http://localhost:8080/api/playlists", request)
-            .then(res => {
-                console.log(res.status)
-                createView("/workouts")
-            })
-            .catch(error => {
-                console.log(error);
-                createView("/workouts")
-            })
+			console.log("click event has fired off")
+            let selectedWorkout = {
+                bodyPart: $("#bodyPart").val(),
+                equipment: $("#equipment").val(),
+                gif_url: $("#gifUrl").attr('src').toString(),
+                name: $("#name").val(),
+                primary_muscle: $("#target").val(),
+                rating: $("#rating :selected").val()
+            }
+            console.log(selectedWorkout.gif_url)
+            console.log(selectedWorkout.bodyPart)
+            console.log(selectedWorkout.name)
+            console.log(selectedWorkout.primary_muscle)
+            console.log(selectedWorkout.equipment)
+            let request = {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(selectedWorkout)
+            }
+            fetch("http://localhost:8080/api/playlists", request)
+                .then(res => {
+                    console.log(res.status)
+                    createView("/workouts")
+                })
+                .catch(error => {
+                    console.log(error);
+                    createView("/workouts")
+                })
 
-    })
+        })
 
 }
+
+function getAllPlaylist(){
+    fetch(`http://localhost:8080/api/playlists/`, {
+        "method": "GET",
+        "headers": {"Content-Type": "application/json"}
+    })
+        .then(response => {
+            return (response.json());
+        })
+        .then(function (data){
+         console.log(data)
+            createOptions(data)
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+function createOptions(data){
+    for (let i = 0; i < data.length; i++){
+        $("#selectPlaylist").append(`
+        <option id={data[i].id}>${data[i].title}</option>
+`)}}
