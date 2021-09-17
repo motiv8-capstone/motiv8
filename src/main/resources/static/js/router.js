@@ -29,7 +29,7 @@ export default function router(URI) {
         '/workouts': {
             returnView: Workouts,
             state: {
-                workouts: '/api/workouts'
+                workouts: '/api/playlists'
             },
             uri: '/workouts',
             title: 'Workouts',

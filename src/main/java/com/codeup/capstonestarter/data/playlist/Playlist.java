@@ -32,7 +32,9 @@ public class Playlist {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+                cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+                targetEntity = Workout.class
+    )
     @JoinTable(name = "playlist_workout",
                 joinColumns = {@JoinColumn(name = "playlist_id", nullable= false, updatable = false)},
                 inverseJoinColumns = {@JoinColumn(name = "workout_id", nullable = false, updatable = false)},
@@ -41,12 +43,6 @@ public class Playlist {
     )
     private List<Workout> workouts;
 
-    public Playlist(Long id, String title, User user, List<Workout> workouts) {
-        this.id = id;
-        this.title = title;
-        this.user = user;
-        this.workouts = workouts;
-    }
 
     public Playlist(){};
 

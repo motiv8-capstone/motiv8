@@ -23,17 +23,24 @@ public class PlaylistController {
     }
 
     @GetMapping
-    private List<Playlist> getPlaylists(){
+    private List<Playlist> getAll(){
         return playlistRepository.findAll();
     }
 
+
     @PostMapping
-    private void createNewPlaylist(@RequestBody Playlist newPlaylist, OAuth2Authentication auth){
+    private void create(@RequestBody Playlist newPlaylist, OAuth2Authentication auth){
         String email = auth.getName();
         User user = userRepository.findByEmail(email).get();
         newPlaylist.setUser(user);
         playlistRepository.save(newPlaylist);
     }
+
+    @PutMapping
+    private void edit(@RequestBody Playlist playlist){
+        playlistRepository.save(playlist);
+    }
+
 
 
 }

@@ -17,9 +17,7 @@ export default function Profile(props) {
         </div>
         
             <div id="playlist">
-                <p>
-                    This is your Profile page.
-                </p>    
+
                 
             </div>
         </main>
@@ -95,7 +93,6 @@ export function createPlaylist(){
             .catch(error => {
                 console.log(error)
             })
-
-
     })
 }
+

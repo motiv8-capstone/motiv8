@@ -18,9 +18,6 @@ public class WorkoutsController {
         this.workoutsRepository = workoutsRepository;
     }
 
-
-
-
     @GetMapping
     private List<Workout> getWorkouts() {
         return workoutsRepository.findAll();

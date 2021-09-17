@@ -25,7 +25,8 @@ public class Workout {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            targetEntity = Playlist.class
     )
     @JoinTable(
             name = "playlist_workout",
@@ -56,4 +57,6 @@ public class Workout {
     public void setWorkout(String workout) {
         this.workout = workout;
     }
+
+
 }
