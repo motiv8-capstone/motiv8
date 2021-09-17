@@ -126,31 +126,35 @@ function getWorkoutCard(workoutObj) {
 
 function addWorkoutEvent() {
 
-    $('.workout-submit-btn').click(function (e) {
+    $('.workout-submit-btn')
+        .click(function (e) {
+            let playlistID = $('.playlist-choice').val();
+            console.log(playlistID);
+            let selectedWorkout = {
+                title: $(this).find(':selected').text(),
+                id: $(this).find(':selected').val(),
+                workouts: [
+                    {
+                        id: $(".id").val()
+                    }
+                ]
+            }
 
-        let selectedWorkout = {
-            bodyPart: $(".body-part").val(),
-            equipment: $(".equipment").val(),
-            gif_url: $(".gif").attr('src').toString(),
-            name: $(".name").val(),
-            primary_muscle: $(".target").val(),
-            rating: $(".rating :selected").val()
-        }
-        let request = {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(selectedWorkout)
-        }
-        fetch("http://localhost:8080/api/playlists", request)
-            .then(res => {
-                console.log(res.status)
-                createView("/workouts")
-            })
-            .catch(error => {
-                console.log(error);
-                createView("/workouts")
-            })
-    })
+            let request = {
+                method: "PUT",
+                headers: getHeaders(),
+                body: JSON.stringify(selectedWorkout)
+            }
+            fetch(`http://localhost:8080/api/playlists/${playlistID}`, request)
+                .then(res => {
+                    console.log(res.status)
+                    createView("/workouts")
+                })
+                .catch(error => {
+                    console.log(error);
+                    createView("/workouts")
+                })
+        })
 }
 
 function getAllPlaylist(){
@@ -174,18 +178,6 @@ function createOptions(data){
     for (let i = 0; i < data.length; i++){
         $(".selectPlaylist").append(`
         <option class="playlist-choice" value={data[i].id}>${data[i].title}</option>
-`)}getIDs()}
+`)}}
 
-//create function that listens for click of select button
-//grab id of playlist selected
-//grab id of workout from which we selected playlist $(this).parent
-//call function that injects workout id into playlist id
 
-function getIDs(){
-    $('.workout-submit-btn').click(function (){
-        let workoutID = $(".id").val;
-        console.log(workoutID);
-        let playlistID = $(".playlist-choice").val();
-        console.log(playlistID);
-    })
-}
