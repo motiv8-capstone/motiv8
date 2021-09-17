@@ -32,8 +32,7 @@ public class Playlist {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {CascadeType.DETACH, CascadeType.REFRESH},
-                targetEntity = Workout.class
+                cascade = {CascadeType.DETACH, CascadeType.REFRESH}
     )
     @JoinTable(name = "playlist_workout",
                 joinColumns = {@JoinColumn(name = "playlist_id", nullable= false, updatable = false)},

@@ -13,14 +13,11 @@ export default function Workouts(props) {
 <select name="bodyParts" id="bodyParts">
   <option value="shoulders">Shoulders</option>
   <option value="chest">Chest</option>
-  <option value="biceps">Biceps</option>
-  <option value="triceps">Triceps</option>
+  <option value="upper arms">Arms</option>
   <option value="back">Back</option>
-  <option value="abs">Abs</option>
-  <option value="quads">Quads</option>
-  <option value="hammies">Hammies</option>
-  <option value="ass">Ass</option>
-  <option value="caffs">Caffs</option>
+  <option value="waist">Abs</option>
+  <option value="upper legs">Quads</option>
+  <option value="lower legs">Calves</option>
 </select>
 <button type="submit" id="submit-btn">Submit</button>
 </form>
@@ -83,13 +80,6 @@ function appendAllWorkoutData(workoutArr) {
 }
 
 function setWorkoutHoverEvent() {
-	// console.log($(".name"))
-	// console.log($(".gif"))
-	// $(".name").hover(function () {
-	//     $(this).siblings(".gif").css("display", "block")
-	// }, function () {
-	//     $(this).siblings(".gif").css("display", "none")
-	// })
 	$(".gif")
 		.css("display", "block");
 	const f = new Freezeframe(".gif", {trigger: "hover"});
@@ -106,13 +96,6 @@ function getWorkoutCard(workoutObj) {
       <input class="name" value="${workoutObj.name}"  readonly>${workoutObj.name}</input>
       <input class="equipment" value="${workoutObj.equipment}" readonly>${workoutObj.equipment} </input>
       <input class="target" value="${workoutObj.target}" readonly>${workoutObj.target} </input>
-      <select name="rating" class="rating">
-         <option value="1">1</option>
-         <option value="2">2</option>
-         <option value="3">3</option>
-         <option value="4">4</option>
-         <option value="5">5</option>
-      </select>
       <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}" style="display:none">
       <button type="submit" class="workout-submit-btn">Select</button></form></div>
       <select name="playlists" class="selectPlaylist"></select>
@@ -123,29 +106,20 @@ function getWorkoutCard(workoutObj) {
 
 
 function addWorkoutEvent() {
-
 	$('.workout-submit-btn')
 		.click(function (e) {
-
 			let selectedWorkout = {
-				title: $(".playlist-choice")
-					.val(),
-				bodyPart: $(".body-part")
-					.val(),
-				equipment: $(".equipment")
-					.val(),
-				gif_url: $(".gif")
-					.attr('src')
-					.toString(),
-				name: $(".name")
-					.val(),
-				primary_muscle: $(".target")
-					.val(),
-				rating: $(".rating :selected")
-					.val()
+				title: $(this).find(':selected').text() ,
+				id: $(this).find(':selected').val(),
+				workouts: [
+					{
+						id: $(".id").val()
+					}
+				]
 			}
+
 			let request = {
-				method: "POST",
+				method: "PUT",
 				headers: getHeaders(),
 				body: JSON.stringify(selectedWorkout)
 			}
@@ -182,24 +156,8 @@ function createOptions(data) {
 	for (let i = 0; i < data.length; i++) {
 		$(".selectPlaylist")
 			.append(`
-        <option class="playlist-choice" value=${data[i].title}>${data[i].title}</option>
+        <option class="playlist-choice" value=${data[i].id}>${data[i].title}</option>
 `)
 	}
-	getIDs()
 }
 
-//create function that listens for click of select button
-//grab id of playlist selected
-//grab id of workout from which we selected playlist $(this).parent
-//call function that injects workout id into playlist id
-
-function getIDs() {
-	$('.workout-submit-btn')
-		.click(function () {
-			let workoutID = $(".id").val;
-			console.log(workoutID);
-			let playlistID = $(".playlist-choice")
-				.val();
-			console.log(playlistID);
-		})
-}
