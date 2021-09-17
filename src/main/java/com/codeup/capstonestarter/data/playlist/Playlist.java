@@ -23,20 +23,16 @@ public class Playlist {
         return user;
     }
 
-
     public void setUser(User user) {
         this.user = user;
     }
 
     @ManyToOne
-            (optional = false)
     private User user;
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {CascadeType.DETACH, CascadeType.REFRESH},
-                targetEntity = Workout.class
-    )
+                cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name = "playlist_workout",
                 joinColumns = {@JoinColumn(name = "playlist_id", nullable= false, updatable = false)},
                 inverseJoinColumns = {@JoinColumn(name = "workout_id", nullable = false, updatable = false)},
@@ -45,6 +41,12 @@ public class Playlist {
     )
     private List<Workout> workouts;
 
+    public Playlist(Long id, String title, User user, List<Workout> workouts) {
+        this.id = id;
+        this.title = title;
+        this.user = user;
+        this.workouts = workouts;
+    }
 
     public Playlist(){};
 

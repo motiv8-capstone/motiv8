@@ -17,7 +17,9 @@ export default function Profile(props) {
         </div>
         
             <div id="playlist">
-
+                <p>
+                    This is your Profile page.
+                </p>    
                 
             </div>
         </main>
@@ -75,8 +77,8 @@ function deletePlaylist() {
 
 
 export function createPlaylist(){
-    console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
+        console.log("Clicky");
         let playlistTitle = {title : $("#playlist-title").val()};
 
 
@@ -93,6 +95,7 @@ export function createPlaylist(){
             .catch(error => {
                 console.log(error)
             })
+
+
     })
 }
-
