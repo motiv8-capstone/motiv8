@@ -23,11 +23,13 @@ public class Playlist {
         return user;
     }
 
+
     public void setUser(User user) {
         this.user = user;
     }
 
     @ManyToOne
+            (optional = false)
     private User user;
 
 

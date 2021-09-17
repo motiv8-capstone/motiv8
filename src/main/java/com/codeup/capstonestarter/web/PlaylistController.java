@@ -36,11 +36,15 @@ public class PlaylistController {
         playlistRepository.save(newPlaylist);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     private void edit(@RequestBody Playlist playlist){
         playlistRepository.save(playlist);
     }
 
 
+//    @GetMapping("{id}")
+//    private void findByID(@PathVariable Long id){
+//        return playlistRepository.getById(id).get
+//    }
 
 }

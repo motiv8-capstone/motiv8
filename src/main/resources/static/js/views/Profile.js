@@ -75,8 +75,8 @@ function deletePlaylist() {
 
 
 export function createPlaylist(){
+    console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
-        console.log("Clicky");
         let playlistTitle = {title : $("#playlist-title").val()};
 
 
