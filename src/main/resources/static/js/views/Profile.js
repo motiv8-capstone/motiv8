@@ -1,4 +1,5 @@
 import createView from "../createView.js";
+import {getHeaders} from "../auth.js";
 
 
 export default function Profile(props) {
@@ -74,27 +75,26 @@ function deletePlaylist() {
     })
 }
 
+
 export function createPlaylist(){
     $("#playlist-create-btn").click(function(){
         console.log("Clicky");
-        let playlistTitle = {title : $("#playlist-name").val()};
+        let playlistTitle = {title : $("#playlist-title").val()};
+
 
         let request = {
             method: "POST",
-            headers: {
-                "Content-Type": 'application/json'
-            },
+            headers: getHeaders(),
             body: JSON.stringify(playlistTitle)
         };
 
-        fetch("http://localhost:8080/api/profile", request)
+        fetch("http://localhost:8080/api/playlists", request)
             .then((response) => {
                 console.log(response.status)
             })
             .catch(error => {
                 console.log(error)
             })
-
 
 
     })

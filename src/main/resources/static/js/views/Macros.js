@@ -1,20 +1,20 @@
 export default function Macros(props) {
 	return `
     <header>
-    <h1>Calculate Your Calories Yo!</h1>
+    <h1>Calorie Calculator</h1>
     <link rel="stylesheet" href="/style/style.css">
 </header>
 
 <br>
 
     <form action="">
-    <label for="Calorie Calculator">Track your Calorie!</label>
+    <label for="Calorie Calculator">Calorie Calculator</label>
     
     <label for="age">Age</label>
     <input type="text" id="age" name="age">
-    <label for="height">Height</label>
+    <label for="height">Height(cm)</label>
     <input type="text" id="height" name="height"
-    <label for="weight">Weight</label>
+    <label for="weight">Weight(kg)</label>
     <input type="text" id="weight" name="weight">
     <select id="gender">
         <option value="male">Male</option>

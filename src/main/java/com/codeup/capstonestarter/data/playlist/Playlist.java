@@ -1,7 +1,9 @@
 package com.codeup.capstonestarter.data.playlist;
 
 
+import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.workouts.Workout;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,9 +19,16 @@ public class Playlist {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private String content;
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne
+    private User user;
 
 
     @ManyToMany(fetch = FetchType.LAZY,
@@ -32,12 +41,11 @@ public class Playlist {
     )
     private List<Workout> workouts;
 
-
-
-    public Playlist(Long id, String title, String content) {
+    public Playlist(Long id, String title, User user, List<Workout> workouts) {
         this.id = id;
         this.title = title;
-        this.content = content;
+        this.user = user;
+        this.workouts = workouts;
     }
 
     public Playlist(){};
@@ -56,14 +64,6 @@ public class Playlist {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public List<Workout> getWorkouts() {
