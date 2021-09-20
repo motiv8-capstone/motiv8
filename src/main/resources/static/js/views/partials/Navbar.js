@@ -18,6 +18,8 @@ export default function Navbar(props) {
             <li class="nav-item active">
             <a class="nav-link" href="/register" data-link>Register</a>
             </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="/profile" data-link>Profile</a>
             </ul>
         </nav>
     `;
