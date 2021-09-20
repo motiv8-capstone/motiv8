@@ -1,7 +1,8 @@
 export default function Navbar(props) {
 	return `
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mx-auto">
             <li class="nav-item active">
             <a class="nav-link" href="/" data-link>Home</a>
             </li>
@@ -17,6 +18,8 @@ export default function Navbar(props) {
             <li class="nav-item active">
             <a class="nav-link" href="/register" data-link>Register</a>
             </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="/profile" data-link>Profile</a>
             </ul>
         </nav>
     `;

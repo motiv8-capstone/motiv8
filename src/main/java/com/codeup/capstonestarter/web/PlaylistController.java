@@ -28,7 +28,7 @@ public class PlaylistController {
     }
 
 
-
+    @PostMapping
     private void createNewPlaylist(@RequestBody Playlist newPlaylist, OAuth2Authentication auth){
         String email = auth.getName();
         User user = userRepository.findByEmail(email).get();
@@ -36,15 +36,11 @@ public class PlaylistController {
         playlistRepository.save(newPlaylist);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     private void edit(@RequestBody Playlist playlist){
         playlistRepository.save(playlist);
     }
 
 
-//    @GetMapping("{id}")
-//    private void findByID(@PathVariable Long id){
-//        return playlistRepository.getById(id).get
-//    }
 
 }

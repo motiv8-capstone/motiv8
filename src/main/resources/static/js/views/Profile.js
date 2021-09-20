@@ -78,13 +78,18 @@ export function createPlaylist(){
     console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
 
-        let playlistTitle = {title : $("#playlist-title").val()};
+        let playlistTitle = $("#playlist-title").val();
 
+        let playlistObj = {
+            title: playlistTitle
+        }
+
+        console.log(playlistTitle)
 
         let request = {
             method: "POST",
             headers: getHeaders(),
-            body: JSON.stringify(playlistTitle)
+            body: JSON.stringify(playlistObj)
         };
 
         fetch("http://localhost:8080/api/playlists", request)
