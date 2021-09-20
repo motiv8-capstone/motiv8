@@ -1,4 +1,5 @@
 import createView from "../createView.js";
+import {getHeaders} from "../auth.js";
 
 export default function Workouts(props) {
     return `
@@ -23,7 +24,7 @@ export default function Workouts(props) {
 </select>
 <button type="submit" id="submit-btn">Submit</button>
 </form>
-
+<select name="playlists" id="playlists" class="selectPlaylist"></select>
 <div id="workout-container" class="row">
     
 </div>
@@ -100,7 +101,6 @@ function setWorkoutHoverEvent() {
 
 function getWorkoutCard(workoutObj) {
     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
-    console.log(workoutObj.id);
     workoutsCard.append(
         `<div class="workout-card"><form>
       <input class="card-header body-part" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>
@@ -116,46 +116,13 @@ function getWorkoutCard(workoutObj) {
          <option value="5">5</option>
       </select>
       <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
-      <button type="submit" class="workout-submit-btn">Select</button></form></div>
-      <select name="playlists" class="selectPlaylist"></select>
+      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button></form></div>
+     
       `
     )
     return workoutsCard
 }
 
-
-function addWorkoutEvent() {
-
-    $('.workout-submit-btn')
-        .click(function (e) {
-            let playlistID = $('.playlist-choice').val();
-            console.log(playlistID);
-            let selectedWorkout = {
-                title: $(this).find(':selected').text(),
-                id: $(this).find(':selected').val(),
-                workouts: [
-                    {
-                        id: $(".id").val()
-                    }
-                ]
-            }
-
-            let request = {
-                method: "PUT",
-                headers: getHeaders(),
-                body: JSON.stringify(selectedWorkout)
-            }
-            fetch(`http://localhost:8080/api/playlists/${playlistID}`, request)
-                .then(res => {
-                    console.log(res.status)
-                    createView("/workouts")
-                })
-                .catch(error => {
-                    console.log(error);
-                    createView("/workouts")
-                })
-        })
-}
 
 function getAllPlaylist(){
     fetch(`http://localhost:8080/api/playlists/`, {
@@ -176,8 +143,44 @@ function getAllPlaylist(){
 
 function createOptions(data){
     for (let i = 0; i < data.length; i++){
+        console.log(data);
         $(".selectPlaylist").append(`
-        <option class="playlist-choice" value={data[i].id}>${data[i].title}</option>
+        <option class="playlist-choice" value=${data[i].id}>${data[i].title}</option>
 `)}}
+
+function addWorkoutEvent() {
+
+    $('.workout-submit-btn')
+        .click(function (e) {
+            // let workoutID = $(this).data("id");
+            // console.log(workoutID);
+            let selectedOptions = {
+                title: $("#playlists").text(),
+                id: $("#playlists").val(),
+                workouts: [
+                    {
+                        id: $(this).data("id")
+                    }
+                ]
+            }
+
+            console.log(selectedOptions);
+
+            let request = {
+                method: "PUT",
+                headers: getHeaders(),
+                body: JSON.stringify(workoutID)
+            }
+            fetch(`http://localhost:8080/api/playlists/${playlistID}`, request)
+                .then(res => {
+                    console.log(res.status)
+                    createView("/workouts")
+                })
+                .catch(error => {
+                    console.log(error);
+                    createView("/workouts")
+                })
+        })
+}
 
 
