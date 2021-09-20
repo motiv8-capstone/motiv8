@@ -34,7 +34,10 @@ public class PlaylistController {
         String email = auth.getName();
         User user = userRepository.findByEmail(email).get();
         newPlaylist.setUser(user);
-        playlistRepository.save(newPlaylist);
+        Playlist oldplaylist = playlistRepository.getById(newPlaylist.getId());
+        oldplaylist.getWorkouts().add(newPlaylist.getWorkouts().get(0));
+
+        playlistRepository.save(oldplaylist);
     }
 
 
