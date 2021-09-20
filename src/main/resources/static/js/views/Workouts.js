@@ -152,7 +152,7 @@ function addWorkoutEvent() {
             console.log(selectedOptions);
 
             let request = {
-                method: "PUT",
+                method: "POST",
                 headers: getHeaders(),
                 body: JSON.stringify(selectedOptions)
             }
