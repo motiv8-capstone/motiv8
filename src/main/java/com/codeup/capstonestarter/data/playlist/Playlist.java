@@ -19,20 +19,16 @@ public class Playlist {
     @Column(nullable = false)
     private String title;
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = {CascadeType.DETACH}
+    )
     private User user;
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+                cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name = "playlist_workout",
                 joinColumns = {@JoinColumn(name = "playlist_id", nullable= false, updatable = false)},
                 inverseJoinColumns = {@JoinColumn(name = "workout_id", nullable = false, updatable = false)},
@@ -72,5 +68,13 @@ public class Playlist {
 
     public void setWorkouts(List<Workout> workouts) {
         this.workouts = workouts;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

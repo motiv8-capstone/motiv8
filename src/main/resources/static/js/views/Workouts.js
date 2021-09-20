@@ -154,9 +154,11 @@ function addWorkoutEvent() {
         .click(function (e) {
             // let workoutID = $(this).data("id");
             // console.log(workoutID);
+            let playlistID = $("#playlists").val();
+
             let selectedOptions = {
-                title: $("#playlists").text(),
-                id: $("#playlists").val(),
+                title: $('#playlists').find(":selected").text(),
+                id: playlistID,
                 workouts: [
                     {
                         id: $(this).data("id")
@@ -169,7 +171,7 @@ function addWorkoutEvent() {
             let request = {
                 method: "PUT",
                 headers: getHeaders(),
-                body: JSON.stringify(workoutID)
+                body: JSON.stringify(selectedOptions)
             }
             fetch(`http://localhost:8080/api/playlists/${playlistID}`, request)
                 .then(res => {
