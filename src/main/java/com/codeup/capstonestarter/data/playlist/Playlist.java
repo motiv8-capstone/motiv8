@@ -19,15 +19,11 @@ public class Playlist {
     @Column(nullable = false)
     private String title;
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = {CascadeType.DETACH}
+    )
     private User user;
 
 
@@ -72,5 +68,13 @@ public class Playlist {
 
     public void setWorkouts(List<Workout> workouts) {
         this.workouts = workouts;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

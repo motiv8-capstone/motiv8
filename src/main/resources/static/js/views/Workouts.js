@@ -136,11 +136,12 @@ function addWorkoutEvent() {
             // let workoutID = $(this).data("id");
             // console.log(workoutID);
 
-            let playlistTitle = $("#playlists").text()
+            let playlistID = $("#playlists").val();
 
             let selectedOptions = {
-                title: playlistTitle.replace(/(\r\n|\n|\r)/gm, ""),
-                id: $("#playlists").val(),
+                title: $('#playlists').find(":selected").text(),
+                id: playlistID,
+
                 workouts: [
                     {
                         id: $(this).data("id")
