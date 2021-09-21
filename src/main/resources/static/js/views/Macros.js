@@ -47,44 +47,38 @@ export default function Macros(props) {
     `
 }
 
+		export function getCalories() {
+			$("#submit-calorie-btn")
+				.click(function () {
+					let ageOption = $("#age")
+						.val();
+					let heightOption = $("#height")
+						.val()
+					let genderOption = $("#genderSelect")
+						.val()
+					let activityLevelOption = $("#activity-level :selected")
+						.val()
+					let weightOption = $("#weight")
+						.val()
+					let goalOption = $("#goals")
+						.val()
 
-export function getCalories() {
-	$(".submit-calorie-btn")
-		.click(function () {
-			let ageOption = $("#age")
-				.val();
-			let heightOption = $("#height")
-				.val()
-			let genderOption = $("#gender :selected")
-				.val()
-			let activityLevelOption = $("#activity-level :selected")
-				.val()
-			let weightOption = $("#weight")
-				.val()
-			let goalOption = $("#goals")
-				.val()
-
-
-			fetch(`https://fitness-calculator.p.rapidapi.com/macrocalculator?age=${ageOption}&gender=${genderOption}&height=${heightOption}&weight=${weightOption}&activitylevel=${activityLevelOption}&goal=${goalOption}`, {
-				"method": "GET",
-				"headers": {
-					"x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-					"x-rapidapi-key": "14c61813b9msh668ee17878a077bp13699ejsn8ba42420bfe2"
-				}
-			})
-				.then(response => {
-					return (response.json());
+					fetch(`https://fitness-calculator.p.rapidapi.com/macrocalculator?age=${ageOption}&gender=${genderOption}&height=${heightOption}&weight=${weightOption}&activitylevel=${activityLevelOption}&goal=${goalOption}`, {
+						"method": "GET",
+						"headers": {
+							"x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+							"x-rapidapi-key": "14c61813b9msh668ee17878a077bp13699ejsn8ba42420bfe2"
+						}
+					})
+						.then(response => {
+							return (response.json());
+						})
+						.then(function (data) {
+							console.log(data)
+							alert(`Proper calorie intake should be: ${data.calorie} calories`)
+						})
+						.catch(err => {
+							console.log(err)
+						})
 				})
-				.then(function (data) {
-					console.log(data)
-					alert(`Proper calorie intake should be: ${data.calorie} calories`)
-				})
-				.catch(err => {
-					console.log(err)
-				})
-
-		})
-
-}
-
-
+		}
