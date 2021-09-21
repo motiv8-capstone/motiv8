@@ -33,6 +33,32 @@
     background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
+/*.freezeFrame{*/
+
+/*    display: none;*/
+
+/*}*/
+
+.font {
+
+    font-family: 'Comfortaa', cursive;
+}
+
+.navbar {
+
+    background-color: black;
+
+}
+
+.jumbotron{
+    height: 30vh;
+}
+
+.jumbotron-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 .gif freezeFrame{
@@ -41,3 +67,4 @@
 
 
 }
+
