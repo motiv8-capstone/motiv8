@@ -59,7 +59,7 @@ function getPlaylistCard(PlaylistObj) {
     console.log(workoutsCard)
     console.log(PlaylistObj)
     workoutsCard.append(
-        `<img alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
+        `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
                     <div class="name">${PlaylistObj.name}</div>
                     <div class="bodypart">${PlaylistObj.bodyPart}</span>
                     <div class="equipment">${PlaylistObj.equipment}</div>
@@ -114,6 +114,7 @@ function deletePlaylist() {
 
     })
 }
+
 export function createPlaylist(){
     console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
