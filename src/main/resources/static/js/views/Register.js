@@ -4,7 +4,7 @@ export default function Register(props) {
 <head>
     <meta charset="UTF-8"/>
     <title>Register</title>
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/static/style/style.css">
 </head>
 <body>
 <section class="vh-100">

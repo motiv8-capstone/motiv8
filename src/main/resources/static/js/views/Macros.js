@@ -2,7 +2,7 @@ export default function Macros(props) {
 	return `
     <header>
     <h1>Calorie Calculator</h1>
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/static/style/style.css">
 </header>
 
 <br>
