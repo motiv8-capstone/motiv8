@@ -16,11 +16,9 @@ export default function Profile(props) {
         </form>
         </div>
         
-            <div id="playlist-container" class="card col-lg-3 px-3 mb-2 mt-2">
-            
-            
-            
-        </div>
+         <div id="playlist-container" class="container row justify-between">
+         
+         </div>
 
              
         </main>
@@ -33,20 +31,6 @@ export function playlistEvent(){
     deletePlaylist();
 }
 
-
-// function getPlaylists(data) {
-//
-//     for (let i = 0; i < data.length; i++) {
-//         for(let j = 0; j < data[i].workouts.length; j++){
-//         $('#playlist').append(`
-//
-//
-//
-//     `)
-//             console.log(data[i].workouts[j].workout.name)
-//     }}
-//
-// }
 
 function filterWorkoutObject(data) {
     console.log(data)
@@ -61,24 +45,12 @@ function filterWorkoutObject(data) {
 }
 
 
-// const iterate = (obj) => {
-//     Object.keys(obj).forEach(key => {
-//
-//         console.log(`key: ${key}, value: ${obj[key]}`)
-//
-//         if (typeof obj[key] === 'object') {
-//             iterate(obj[key])
-//         }
-//     })
-// }
-
-
-
 function appendAllPlaylistData(workoutArr) {
     workoutArr.forEach(function (obj) {
         $('#playlist-container')
             .append(getPlaylistCard(obj))
     })
+    setWorkoutHoverEvent();
 }
 
 
@@ -87,23 +59,17 @@ function getPlaylistCard(PlaylistObj) {
     console.log(workoutsCard)
     console.log(PlaylistObj)
     workoutsCard.append(
-        `<img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
-         <div class="card name">${PlaylistObj.name}</div>
-         <div class="card-body">
-                    <span class="name">${PlaylistObj.name}</span>
-                    <span class="bodypart">${PlaylistObj.bodyPart}</span>
-                    <span class="equipment">${PlaylistObj.equipment}</span>
-                    <span class="muscle">${PlaylistObj.target}</span>
-                    <span class="gif">${PlaylistObj.gifUrl}</span>
-                    <div>
-                    </div>
-                    <button class="delete-playlist-btn" data-id=${PlaylistObj.id}>Delete</button>
-        </div>
-     
+        `<img alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
+                    <div class="name">${PlaylistObj.name}</div>
+                    <div class="bodypart">${PlaylistObj.bodyPart}</span>
+                    <div class="equipment">${PlaylistObj.equipment}</div>
+                    <div class="muscle">${PlaylistObj.target}</div>
+                    <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
       `
     )
     return workoutsCard
 }
+
 
 function setWorkoutHoverEvent() {
     const f = new Freezeframe(".gif", {trigger: "hover"});
