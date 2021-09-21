@@ -3,9 +3,10 @@ package com.codeup.capstonestarter.data.user;
 import com.codeup.capstonestarter.data.playlist.Playlist;
 import com.codeup.capstonestarter.data.workouts.Workout;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+//import javax.validation.constraints.Email;
 import java.util.Collection;
 import java.util.List;
 
