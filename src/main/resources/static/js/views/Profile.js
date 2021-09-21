@@ -16,40 +16,82 @@ export default function Profile(props) {
         </form>
         </div>
         
-            <div id="playlist">
+         <div id="playlist-container" class="container row justify-between">
+         
+         </div>
 
-                
-            </div>
+             
         </main>
     `;
 }
 
-function playlistEvent(){
-    getPlaylists();
-    deletePlaylist();
+export function playlistEvent(){
     createPlaylist()
+    getUserPlaylists()
+    deletePlaylist();
 }
 
 
-function getPlaylists(playlist) {
-    for (let i = 0; i < playlist.length; i++) {
+function filterWorkoutObject(data) {
+    console.log(data)
+    let playlistObjArr = [];
+    for (let i = 0; i < data.length; i++) {
+        console.log(data[i])
+        for (let j = 0; j < data[i].workouts.length; j++){
+            console.log(data[i].workouts[j])
+        playlistObjArr.push(JSON.parse(data[i].workouts[j].workout))
+    }}
+    return playlistObjArr;
+}
 
-        $('#playlist').append(`
-      
-                <div class="playlist">
-                    <span class="name">${playlist[i].name}</span>
-                    <span class="bodypart">${playlist[i].bodyPart}</span>
-                    <span class="equipment">${playlist[i].equipment}</span>
-                    <span class="muscle">${playlist[i].primary_muscle}</span>
-                    <span class="gif">${playlist[i].gif_url}</span>
-                    <span class="rating">${playlist[i].rating}</span>
-                    <div>
-                    </div>
-                    <button class="delete-playlist-btn" data-id=${playlist.id}>Delete</button>
-        </div>
-                
-    `)
-    }
+
+function appendAllPlaylistData(workoutArr) {
+    workoutArr.forEach(function (obj) {
+        $('#playlist-container')
+            .append(getPlaylistCard(obj))
+    })
+    setWorkoutHoverEvent();
+}
+
+
+function getPlaylistCard(PlaylistObj) {
+    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
+    console.log(workoutsCard)
+    console.log(PlaylistObj)
+    workoutsCard.append(
+        `<img alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
+                    <div class="name">${PlaylistObj.name}</div>
+                    <div class="bodypart">${PlaylistObj.bodyPart}</span>
+                    <div class="equipment">${PlaylistObj.equipment}</div>
+                    <div class="muscle">${PlaylistObj.target}</div>
+                    <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
+      `
+    )
+    return workoutsCard
+}
+
+
+function setWorkoutHoverEvent() {
+    const f = new Freezeframe(".gif", {trigger: "hover"});
+    f.toggle()
+}
+
+
+function getUserPlaylists(){
+    fetch(`http://localhost:8080/api/playlists/`, {
+        "method": "GET",
+        "headers": getHeaders()
+    })
+        .then(response => {
+            return (response.json());
+        })
+        .then(function (data){
+            console.log(data)
+            appendAllPlaylistData(filterWorkoutObject(data))
+        })
+        .catch(err => {
+            console.error(err);
+        });
 }
 
 function deletePlaylist() {
@@ -72,8 +114,6 @@ function deletePlaylist() {
 
     })
 }
-
-
 export function createPlaylist(){
     console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){

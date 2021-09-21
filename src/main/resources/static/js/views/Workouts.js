@@ -41,7 +41,7 @@ function getBodyPart() {
 
             console.log(selectOption)
 
-            fetch(`http://localhost:8080/api/workouts/findByBodyPart?bodyPart=${selectOption}`, {
+            fetch(`/api/workouts/findByBodyPart?bodyPart=${selectOption}`, {
                 "method": "GET",
                 "headers": {"Content-Type": "application/json"}
             })
@@ -87,23 +87,20 @@ function setWorkoutHoverEvent() {
 function getWorkoutCard(workoutObj) {
     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
     workoutsCard.append(
-        `<div class="workout-card"><form>
-      <input class="card-header body-part" value="${workoutObj.bodyPart}" readonly>${workoutObj.bodyPart}</input>
-      <input class="id" value="${workoutObj.id}" readonly>${workoutObj.id}</input>
-      <input class="name" value="${workoutObj.name}"  readonly>${workoutObj.name}</input>
-      <input class="equipment" value="${workoutObj.equipment}" readonly>${workoutObj.equipment} </input>
-      <input class="target" value="${workoutObj.target}" readonly>${workoutObj.target} </input>
+        `<div class="workout-card">
+      <div class="card-header name">${workoutObj.name}</div>
+      <div class="equipment">Equipment: ${workoutObj.equipment}</div>
+      <div class="target">Target Muscle: ${workoutObj.target}</div>
       <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
-      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button></form></div>
-     
-      `
+      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn">Select</button>
+      </div>`
     )
     return workoutsCard
 }
 
 
 function getAllPlaylist(){
-    fetch(`http://localhost:8080/api/playlists/`, {
+    fetch(`/api/playlists/`, {
         "method": "GET",
         "headers": getHeaders()
     })
@@ -133,9 +130,6 @@ function addWorkoutEvent() {
 
     $('.workout-submit-btn')
         .click(function (e) {
-            // let workoutID = $(this).data("id");
-            // console.log(workoutID);
-
             let playlistID = $("#playlists").val();
 
             let selectedOptions = {
@@ -156,7 +150,7 @@ function addWorkoutEvent() {
                 headers: getHeaders(),
                 body: JSON.stringify(selectedOptions)
             }
-            fetch(`http://localhost:8080/api/playlists`, request)
+            fetch(`/api/playlists`, request)
                 .then(res => {
                     console.log(res.status)
                     createView("/workouts")

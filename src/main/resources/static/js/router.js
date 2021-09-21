@@ -5,7 +5,7 @@ import Error404 from "./views/Error404.js";
 import Macros, {getCalories} from "./views/Macros.js";
 import Register, {RegisterEvent} from "./views/Register.js";
 import Login from "./views/Login.js";
-import Profile, {createPlaylist} from "./views/Profile.js";
+import Profile, {playlistEvent} from "./views/Profile.js";
 import Workouts from "./views/Workouts.js";
 
 
@@ -69,7 +69,7 @@ export default function router(URI) {
             },
             uri: '/profile',
             title: 'Profile',
-            viewEvent: createPlaylist
+            viewEvent: playlistEvent
         }
 
 
