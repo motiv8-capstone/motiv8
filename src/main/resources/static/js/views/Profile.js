@@ -16,40 +16,116 @@ export default function Profile(props) {
         </form>
         </div>
         
-            <div id="playlist">
+            <div id="playlist-container" class="card col-lg-3 px-3 mb-2 mt-2">
+            
+            
+            
+        </div>
 
-                
-            </div>
+             
         </main>
     `;
 }
 
-function playlistEvent(){
-    getPlaylists();
-    deletePlaylist();
+export function playlistEvent(){
     createPlaylist()
+    getUserPlaylists()
+    deletePlaylist();
 }
 
 
-function getPlaylists(playlist) {
-    for (let i = 0; i < playlist.length; i++) {
+// function getPlaylists(data) {
+//
+//     for (let i = 0; i < data.length; i++) {
+//         for(let j = 0; j < data[i].workouts.length; j++){
+//         $('#playlist').append(`
+//
+//
+//
+//     `)
+//             console.log(data[i].workouts[j].workout.name)
+//     }}
+//
+// }
 
-        $('#playlist').append(`
-      
-                <div class="playlist">
-                    <span class="name">${playlist[i].name}</span>
-                    <span class="bodypart">${playlist[i].bodyPart}</span>
-                    <span class="equipment">${playlist[i].equipment}</span>
-                    <span class="muscle">${playlist[i].primary_muscle}</span>
-                    <span class="gif">${playlist[i].gif_url}</span>
-                    <span class="rating">${playlist[i].rating}</span>
+function filterWorkoutObject(data) {
+    console.log(data)
+    let playlistObjArr = [];
+    for (let i = 0; i < data.length; i++) {
+        console.log(data[i])
+        for (let j = 0; j < data[i].workouts.length; j++){
+            console.log(data[i].workouts[j])
+        playlistObjArr.push(JSON.parse(data[i].workouts[j].workout))
+    }}
+    return playlistObjArr;
+}
+
+
+// const iterate = (obj) => {
+//     Object.keys(obj).forEach(key => {
+//
+//         console.log(`key: ${key}, value: ${obj[key]}`)
+//
+//         if (typeof obj[key] === 'object') {
+//             iterate(obj[key])
+//         }
+//     })
+// }
+
+
+
+function appendAllPlaylistData(workoutArr) {
+    workoutArr.forEach(function (obj) {
+        $('#playlist-container')
+            .append(getPlaylistCard(obj))
+    })
+}
+
+
+function getPlaylistCard(PlaylistObj) {
+    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
+    console.log(workoutsCard)
+    console.log(PlaylistObj)
+    workoutsCard.append(
+        `<img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
+         <div class="card name">${PlaylistObj.name}</div>
+         <div class="card-body">
+                    <span class="name">${PlaylistObj.name}</span>
+                    <span class="bodypart">${PlaylistObj.bodyPart}</span>
+                    <span class="equipment">${PlaylistObj.equipment}</span>
+                    <span class="muscle">${PlaylistObj.target}</span>
+                    <span class="gif">${PlaylistObj.gifUrl}</span>
                     <div>
                     </div>
-                    <button class="delete-playlist-btn" data-id=${playlist.id}>Delete</button>
+                    <button class="delete-playlist-btn" data-id=${PlaylistObj.id}>Delete</button>
         </div>
-                
-    `)
-    }
+     
+      `
+    )
+    return workoutsCard
+}
+
+function setWorkoutHoverEvent() {
+    const f = new Freezeframe(".gif", {trigger: "hover"});
+    f.toggle()
+}
+
+
+function getUserPlaylists(){
+    fetch(`http://localhost:8080/api/playlists/`, {
+        "method": "GET",
+        "headers": getHeaders()
+    })
+        .then(response => {
+            return (response.json());
+        })
+        .then(function (data){
+            console.log(data)
+            appendAllPlaylistData(filterWorkoutObject(data))
+        })
+        .catch(err => {
+            console.error(err);
+        });
 }
 
 function deletePlaylist() {
@@ -72,8 +148,6 @@ function deletePlaylist() {
 
     })
 }
-
-
 export function createPlaylist(){
     console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
