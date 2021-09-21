@@ -44,7 +44,7 @@ export default function Macros(props) {
 								
 								<div class="form-group col-md-12">
 									<label for="inputState">Activity Level</label>
-										<select id="activity-level" class="form-control">
+										<select id="activity-level" class="form-select">
 											<option value="1">1: BMR</option>
 											<option value="2">2: Sedentary: little to no exercise</option>
 											<option value="3">3: Exercise 1-3 times/week</option>
