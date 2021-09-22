@@ -1,7 +1,6 @@
 export default function Macros(props) {
 	return `
 		<header>
-			<h1>Calculate Your Calories Yo!</h1>
 			<link rel="stylesheet" href="/style/style.css">
 		</header>
 		
@@ -72,11 +71,13 @@ export default function Macros(props) {
 									<button id="submit-calorie-btn" class="btn btn-info btn-lg btn-block" type="button">Calculate Calories!</button>
 								</div>
 								
-								<div class="col-sm-6 px-0 d-none d-sm-block">
-									<img src="https://media.istockphoto.com/photos/gym-in-focus-picture-id1130504588?k=20&m=1130504588&s=612x612&w=0&h=RqbNHvdcXJpLozUbgnj5RJkfw7rVw_lb6CarG2ZrjEw=" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
-								</div>
+								
 							</form>
+								<div class="col-sm-6 px-0 d-none d-sm-block">
+									<img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1406&q=80" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+								</div>
 						</div>
+					
 					</div>
 				</div>
 			</div>
