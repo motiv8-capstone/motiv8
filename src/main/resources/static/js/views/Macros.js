@@ -35,7 +35,7 @@ export default function Macros(props) {
                         
                         <div class="form-group col-md-12">
                            <label for="inputState">Gender</label>
-                              <select id="genderSelect" class="form-control">
+                              <select id="genderSelect" class="form-select">
                                  <option value="male">Male</option>
                                  <option value="female">Female</option>
                               </select>
@@ -56,7 +56,7 @@ export default function Macros(props) {
                         
                         <div class="form-group col-md-12">
                            <label for="inputState">Goals</label>
-                              <select id="goals" class="form-control">
+                              <select id="goals" class="form-select">
                                  <option value="maintain">Maintain Weight</option>
                                  <option value="mildlose">Mild Weight Loss</option>
                                  <option value="weightlose">Weight Loss</option>
@@ -74,7 +74,7 @@ export default function Macros(props) {
                         
                      </form>
                         <div class="col-sm-6 px-0 d-none d-sm-block">
-                           <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1406&q=80" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                           <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
                         </div>
                   </div>
                
