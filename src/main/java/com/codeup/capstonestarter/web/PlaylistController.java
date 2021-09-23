@@ -23,17 +23,33 @@ public class PlaylistController {
     }
 
     @GetMapping
-    private List<Playlist> getPlaylists(){
+    private List<Playlist> getAll(){
         return playlistRepository.findAll();
     }
+
+
 
     @PostMapping
     private void createNewPlaylist(@RequestBody Playlist newPlaylist, OAuth2Authentication auth){
         String email = auth.getName();
         User user = userRepository.findByEmail(email).get();
         newPlaylist.setUser(user);
-        playlistRepository.save(newPlaylist);
+        Playlist oldplaylist = playlistRepository.getById(newPlaylist.getId());
+        oldplaylist.getWorkouts().add(newPlaylist.getWorkouts().get(0));
+
+        playlistRepository.save(oldplaylist);
     }
+
+
+    @PutMapping("/{id}")
+    private void edit(@RequestBody Playlist playlist, OAuth2Authentication auth){
+        String email = auth.getName();
+        User user = userRepository.findByEmail(email).get();
+        playlist.setUser(user);
+
+        playlistRepository.save(playlist);
+    }
+
 
 
 }
