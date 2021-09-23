@@ -4,7 +4,7 @@ export default function Register(props) {
 <head>
     <meta charset="UTF-8"/>
     <title>Register</title>
-    <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
 <section class="vh-100">
@@ -29,7 +29,7 @@ export default function Register(props) {
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="email" id="username" class="form-control form-control-lg" />
+                            <input type="email" id="email" class="form-control form-control-lg" />
                             <label class="form-label" for="username">Email address</label>
                         </div>
 
@@ -55,16 +55,6 @@ export default function Register(props) {
         </div>
     </div>
 
-<!--<h1>Register</h1>-->
-
-<!--<form id="register-form">-->
-<!--    <label for="username">Username</label>-->
-<!--    <input id="username" name="username" type="text"/>-->
-<!--    <label for="email">Email</label>-->
-<!--    <input id="email" name="email" type="email"/>-->
-<!--    <label for="password">Password</label>-->
-<!--    <input id="password" name="password" type="password"/>-->
-<!--    <button type="button" id="register-btn">Submit</button>-->
 </form>
 </body>
 </html>`;
