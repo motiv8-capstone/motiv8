@@ -2,6 +2,7 @@ export default function Navbar(props) {
 	return `
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item active">
             <a class="nav-link" href="/" data-link>Home</a>
@@ -15,7 +16,7 @@ export default function Navbar(props) {
             <li class="nav-item active">
             <a class="nav-link" href="/profile" data-link>Profile</a>
             </ul>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-0">
             <li class="nav-item active">
             <a class="nav-link" href="/login" data-link>Login</a>
             </li>
@@ -23,6 +24,7 @@ export default function Navbar(props) {
             <a class="nav-link" href="/register" data-link>Register</a>
             </li>
             </ul>
+            </div>
         </nav>
     `;
 }

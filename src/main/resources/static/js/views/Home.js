@@ -8,7 +8,7 @@ export default function Home(props) {
                             <h1 class="display-5 fw-bolder text-white mb-2">Create workouts in a whole new way!</h1>
                             <p class="lead text-white mb-4">Quickly create and customize different workout playlists tailored to your specific exercise needs!</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/register">Get Started</a>
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/register" data-link>Get Started</a>
                             </div>
                         </div>
                     </div>
