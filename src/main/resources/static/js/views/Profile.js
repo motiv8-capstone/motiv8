@@ -5,22 +5,24 @@ import {getHeaders} from "../auth.js";
 export default function Profile(props) {
     return `
         <header>
-            <h1>Profile Page</h1>
+            <h1 class="text-center mb-5 mt-3">Profile Page</h1>
         </header>
         <main>
-        <div>
+        <div class="container-fluid">
+        <div class="input-group-lg">
         <form id="playlist-create">
-            <label for="playlist-title">Playlist Name</label>
-            <input id="playlist-title" name="playlist-title" type="text">
-            <button type="button" id="playlist-create-btn">Create Playlist</button>
+        <input id="playlist-title" class="form-control" name="playlist-title" placeholder="Create a Playlist" type="text">  
+        <div class="input-group-prepend">
+        <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create</button>
+        </div>
         </form>
         </div>
-        
+       
          <div id="playlist-container" class="container row justify-between">
          
          </div>
 
-             
+              </div>
         </main>
     `;
 }
@@ -64,7 +66,7 @@ function getPlaylistCard(PlaylistObj) {
                     <div class="bodypart">${PlaylistObj.bodyPart}</span>
                     <div class="equipment">${PlaylistObj.equipment}</div>
                     <div class="muscle">${PlaylistObj.target}</div>
-                    <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
+                    <button class="delete-playlist-btn form-control btn-danger" data-id=${PlaylistObj.id}>Delete</button>
       `
     )
     return workoutsCard

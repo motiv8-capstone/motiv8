@@ -12,7 +12,6 @@ export default function Workouts(props) {
 <div class="container">
   <form action="">
   <div class="input-group">
-
 	<select class="form-select mb-3" name="bodyParts" id="bodyParts">
 	  <option>Select a body part</option>
 	  <option value="shoulders">Shoulders</option>
