@@ -15,6 +15,7 @@ export default function Workouts(props) {
   <div class="input-group-prepend">
   <button type="submit" id="submit-btn" class="btn btn-dark">Submit</button>
   </div>
+  
 	<select class="form-select mb-3" name="bodyParts" id="bodyParts">
 	  <option>Select a body part</option>
 	  <option value="shoulders">Shoulders</option>
@@ -26,8 +27,9 @@ export default function Workouts(props) {
 	</select>
 	</div>
 	</form>
+	
 	<select name="playlists" id="playlists" class="form-select selectPlaylist">
-	 
+	 <option>Select a Playlist to add workouts to</option>
 	</select>
 	
 	
@@ -40,6 +42,7 @@ export default function Workouts(props) {
 
 export function init() {
 	getBodyPart();
+	getAllPlaylist();
 }
 
 
@@ -85,7 +88,6 @@ function appendAllWorkoutData(workoutArr) {
 	})
 	addWorkoutEvent();
 	setWorkoutHoverEvent();
-	getAllPlaylist();
 }
 
 
