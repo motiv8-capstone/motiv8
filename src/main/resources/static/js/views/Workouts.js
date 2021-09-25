@@ -12,10 +12,7 @@ export default function Workouts(props) {
 <div class="container">
   <form action="">
   <div class="input-group">
-  <div class="input-group-prepend">
-  <button type="submit" id="submit-btn" class="btn btn-dark">Submit</button>
-  </div>
-  
+
 	<select class="form-select mb-3" name="bodyParts" id="bodyParts">
 	  <option>Select a body part</option>
 	  <option value="shoulders">Shoulders</option>
@@ -25,6 +22,10 @@ export default function Workouts(props) {
 	  <option value="abs">Abs</option>
 	  <option value="quads">Quads</option>
 	</select>
+	  <div class="input-group-prepend">
+  <button type="submit" id="submit-btn" class="btn btn-dark">Submit</button>
+  </div>
+  
 	</div>
 	</form>
 	

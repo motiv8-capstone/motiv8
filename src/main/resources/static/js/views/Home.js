@@ -1,12 +1,12 @@
 export default function Home(props) {
     return `
- <header class="bg-dark py-5">
+ <header class="py-5" id="header-background">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
                         <div class="text-center my-5">
                             <h1 class="display-5 fw-bolder text-white mb-2">Create workouts in a whole new way!</h1>
-                            <p class="lead text-white-50 mb-4">Quickly create and customize different workout playlists tailored to your specific exercise needs!</p>
+                            <p class="lead text-white mb-4">Quickly create and customize different workout playlists tailored to your specific exercise needs!</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/register">Get Started</a>
                             </div>
