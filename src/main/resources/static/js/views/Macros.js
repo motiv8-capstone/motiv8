@@ -3,18 +3,16 @@ export default function Macros(props) {
       <header>
          <link rel="stylesheet" href="/style/style.css">
       </header>
-      
-      </br>
-      
+     
       <section class="vh-100">
          <div class="container-fluid">
             <div class="row">
                <div class="col-sm-6 text-black">
                   <div class="px-5 ms-xl-4">
-                     <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+                     <i class="fas fa-crow fa-2x pt-3 mt-xl-4" style="color: #709085;"></i>
                      <span class="h1 fw-bold mb-0"><img src="https://i.pinimg.com/564x/32/ee/9d/32ee9dbc5df08a254e90bbefe2a9d194.jpg" alt="Logo" width="100" height="100"> </span>
                   </div>
-                  <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                  <div class="d-flex align-items-start px-5 ms-xl-4 pt-5 pt-xl-0 mt-xl-n5">
                      <form style="width: 23rem;">
                         <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Track your Calories!</h3>
                       
@@ -73,12 +71,14 @@ export default function Macros(props) {
                         
                         
                      </form>
-                        <div class="col-sm-6 px-0 d-none d-sm-block">
-                           <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1406&q=80" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
-                        </div>
+                        
                   </div>
+                  
                
                </div>
+               <div class="col-sm-6 px-0 d-none d-sm-block">
+                           <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1406&q=80" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                        </div>
             </div>
          </div>
       </section>   
