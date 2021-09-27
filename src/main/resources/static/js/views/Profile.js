@@ -5,22 +5,32 @@ import {getHeaders} from "../auth.js";
 export default function Profile(props) {
     return `
         <header>
-            <h1>Profile Page</h1>
+            <h1 class="text-center mb-5 mt-3">Profile Page</h1>
         </header>
         <main>
-        <div>
+        <div class="container-fluid">
+        <div class="input-group-lg">
         <form id="playlist-create">
-            <label for="playlist-title">Playlist Name</label>
-            <input id="playlist-title" name="playlist-title" type="text">
-            <button type="button" id="playlist-create-btn">Create Playlist</button>
+        <input id="playlist-title" class="form-control" name="playlist-title" placeholder="Create a Playlist" type="text">  
+        <div class="input-group-prepend">
+        <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create</button>
+        </div>
         </form>
         </div>
+<<<<<<< HEAD
         
+=======
+       
+>>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
          <div id="playlist-container" class="container row justify-between">
          
          </div>
 
+<<<<<<< HEAD
              
+=======
+              </div>
+>>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
         </main>
     `;
 }
@@ -59,12 +69,20 @@ function getPlaylistCard(PlaylistObj) {
     console.log(workoutsCard)
     console.log(PlaylistObj)
     workoutsCard.append(
+<<<<<<< HEAD
         `<img alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
+=======
+        `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
+>>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
                     <div class="name">${PlaylistObj.name}</div>
                     <div class="bodypart">${PlaylistObj.bodyPart}</span>
                     <div class="equipment">${PlaylistObj.equipment}</div>
                     <div class="muscle">${PlaylistObj.target}</div>
+<<<<<<< HEAD
                     <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
+=======
+                    <button class="delete-playlist-btn form-control btn-danger" data-id=${PlaylistObj.id}>Delete</button>
+>>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
       `
     )
     return workoutsCard
@@ -114,6 +132,10 @@ function deletePlaylist() {
 
     })
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
 export function createPlaylist(){
     console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){

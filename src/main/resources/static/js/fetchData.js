@@ -8,7 +8,7 @@
 export default function fetchData(state, request) {
     const promises = [];
     //TODO: this needs to be moved to a prop file or env variable
-    const baseUri = "";
+    const baseUri = "https://motiv8.bar/";
 
     for (let pieceOfState of Object.keys(state)) {
         promises.push(

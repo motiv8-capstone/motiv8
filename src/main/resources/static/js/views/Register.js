@@ -13,11 +13,11 @@ export default function Register(props) {
             <div class="col-sm-6 text-black">
 
                 <div class="px-5 ms-xl-4">
-                    <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+                    <i class="fas fa-crow fa-2x pt-5 mt-xl-4" style="color: #709085;"></i>
                     <span class="h1 fw-bold mb-0"><img src="https://i.pinimg.com/564x/32/ee/9d/32ee9dbc5df08a254e90bbefe2a9d194.jpg" alt="Logo" width="100" height="100"> </span>
                 </div>
 
-                <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                <div class="d-flex align-items-start h-custom-2 pt-3 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
 
                     <form style="width: 23rem;">
 
@@ -29,7 +29,7 @@ export default function Register(props) {
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="email" id="username" class="form-control form-control-lg" />
+                            <input type="email" id="email" class="form-control form-control-lg" />
                             <label class="form-label" for="username">Email address</label>
                         </div>
 
@@ -55,16 +55,6 @@ export default function Register(props) {
         </div>
     </div>
 
-<!--<h1>Register</h1>-->
-
-<!--<form id="register-form">-->
-<!--    <label for="username">Username</label>-->
-<!--    <input id="username" name="username" type="text"/>-->
-<!--    <label for="email">Email</label>-->
-<!--    <input id="email" name="email" type="email"/>-->
-<!--    <label for="password">Password</label>-->
-<!--    <input id="password" name="password" type="password"/>-->
-<!--    <button type="button" id="register-btn">Submit</button>-->
 </form>
 </body>
 </html>`;

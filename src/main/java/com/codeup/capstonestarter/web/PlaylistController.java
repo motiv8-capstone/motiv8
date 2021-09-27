@@ -34,10 +34,7 @@ public class PlaylistController {
         String email = auth.getName();
         User user = userRepository.findByEmail(email).get();
         newPlaylist.setUser(user);
-        Playlist oldplaylist = playlistRepository.getById(newPlaylist.getId());
-        oldplaylist.getWorkouts().add(newPlaylist.getWorkouts().get(0));
-
-        playlistRepository.save(oldplaylist);
+        playlistRepository.save(newPlaylist);
     }
 
 
@@ -46,8 +43,10 @@ public class PlaylistController {
         String email = auth.getName();
         User user = userRepository.findByEmail(email).get();
         playlist.setUser(user);
+        Playlist oldplaylist = playlistRepository.getById(playlist.getId());
+        oldplaylist.getWorkouts().add(playlist.getWorkouts().get(0));
 
-        playlistRepository.save(playlist);
+        playlistRepository.save(oldplaylist);
     }
 
 
