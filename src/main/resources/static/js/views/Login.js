@@ -46,7 +46,7 @@ export default function Login(props) {
 
             </div>
             <div class="col-sm-6 px-0 d-none d-sm-block">
-                <img src="https://media.istockphoto.com/photos/dumbbells-in-gym-picture-id1028268374?k=20&m=1028268374&s=612x612&w=0&h=ls-Lf4KwsGDp8nR-ENU0NbE0jHfFcK7qgCyynjGwjKk=" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                <img src="https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVtYmVsbHN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
             </div>
         </div>
     </div>
