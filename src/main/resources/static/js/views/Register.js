@@ -50,7 +50,7 @@ export default function Register(props) {
 
             </div>
             <div class="col-sm-6 px-0 d-none d-sm-block">
-                <img src="https://media.istockphoto.com/photos/gym-in-focus-picture-id1130504588?k=20&m=1130504588&s=612x612&w=0&h=RqbNHvdcXJpLozUbgnj5RJkfw7rVw_lb6CarG2ZrjEw=" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                <img src="https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVtYmVsbHN8ZW58MHx8MHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
             </div>
         </div>
     </div>
