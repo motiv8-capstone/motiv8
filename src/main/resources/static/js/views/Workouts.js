@@ -18,8 +18,9 @@ export default function Workouts(props) {
 	  <option value="chest">Chest</option>
 	  <option value="upper arms">Arms</option>
 	  <option value="back">Back</option>
-	  <option value="abs">Abs</option>
-	  <option value="quads">Quads</option>
+	  <option value="waist">Abs</option>
+	  <option value="upper legs">Quads</option>
+	  <option value="cardio">Cardio</option>
 	</select>
 	  <div class="input-group-prepend">
   <button type="submit" id="submit-btn" class="btn btn-dark">Submit</button>
