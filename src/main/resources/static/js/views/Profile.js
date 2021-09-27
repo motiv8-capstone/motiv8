@@ -80,7 +80,7 @@ function setWorkoutHoverEvent() {
 
 
 function getUserPlaylists(){
-    fetch(`http://localhost:8080/api/playlists/`, {
+    fetch(`/api/playlists/`, {
         "method": "GET",
         "headers": getHeaders()
     })
@@ -135,7 +135,7 @@ export function createPlaylist(){
             body: JSON.stringify(playlistObj)
         };
 
-        fetch("http://localhost:8080/api/playlists", request)
+        fetch("/api/playlists", request)
             .then((response) => {
                 console.log(response.status)
             })
