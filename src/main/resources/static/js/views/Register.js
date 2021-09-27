@@ -39,7 +39,7 @@ export default function Register(props) {
                         </div>
 
                         <div class="pt-1 mb-4">
-                            <button id="login-btn" class="btn btn-info btn-lg btn-block" type="button">Submit</button>
+                            <button id="register-btn" class="btn btn-info btn-lg btn-block" type="button">Submit</button>
                         </div>
 
                 
