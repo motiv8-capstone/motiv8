@@ -49,6 +49,10 @@ public class PlaylistController {
         playlistRepository.save(oldplaylist);
     }
 
+    @GetMapping("{id}")
+    private Playlist findByID(@PathVariable Long id){
+        return playlistRepository.findById(id).get();
+    }
 
 
 }
