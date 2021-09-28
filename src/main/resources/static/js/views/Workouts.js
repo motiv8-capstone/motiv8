@@ -151,39 +151,42 @@ function addWorkoutEvent() {
 
 	$('.workout-submit-btn')
 		.click(function (e) {
-			let playlistID = $("#playlists")
-				.val();
+			let answer = confirm("Do you want to add this workout?")
+			if(answer) {
+				let playlistID = $("#playlists")
+					.val();
 
-			let selectedOptions = {
-				title: $('#playlists')
-					.find(":selected")
-					.text(),
-				id: playlistID,
+				let selectedOptions = {
+					title: $('#playlists')
+						.find(":selected")
+						.text(),
+					id: playlistID,
 
-				workouts: [
-					{
-						id: $(this)
-							.data("id")
-					}
-				]
+					workouts: [
+						{
+							id: $(this)
+								.data("id")
+						}
+					]
+				}
+
+				console.log(selectedOptions);
+
+				let request = {
+					method: "PUT",
+					headers: getHeaders(),
+					body: JSON.stringify(selectedOptions)
+				}
+				fetch(`/api/playlists/${playlistID}`, request)
+					.then(res => {
+						console.log(res.status)
+						createView("/workouts")
+					})
+					.catch(error => {
+						console.log(error);
+						createView("/workouts")
+					})
 			}
-
-			console.log(selectedOptions);
-
-			let request = {
-				method: "PUT",
-				headers: getHeaders(),
-				body: JSON.stringify(selectedOptions)
-			}
-			fetch(`/api/playlists/${playlistID}`, request)
-				.then(res => {
-					console.log(res.status)
-					createView("/workouts")
-				})
-				.catch(error => {
-					console.log(error);
-					createView("/workouts")
-				})
 		})
 }
 
