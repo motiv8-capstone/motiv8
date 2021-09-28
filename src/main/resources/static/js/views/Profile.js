@@ -16,11 +16,11 @@ export default function Profile(props) {
         </form>
         </div>
         <div id="all-playlist"></div>
-        <div id="daddy-container">
-            <div id="playlist-title-container">
-                <div id="playlist-container" class="container row justify-between"></div>
+       
+            <div id="playlist-title-container" class="container row justify-between">
+                
             </div>
-        </div>     
+         
         </main>
     `;
 }
@@ -45,7 +45,7 @@ function getWorkoutsByID(){
     $(".btn")
         .click(function () {
             let id = $(this).val();
-            $('#playlist-container').empty();
+            $('#playlist-title-container').empty();
 
 
 
@@ -70,22 +70,23 @@ function getWorkoutsByID(){
 
 function appendAllPlaylistData(playlist) {
     let playlistArr=[];
+    $('#playlist-title-container')
+        .append(playlist.title);
+
 
     for(let i = 0; i < playlist.workouts.length; i++){
-
-        $('#playlist-title-container')
-            .append(playlist.title);
-
         playlistArr.push(JSON.parse(playlist.workouts[i].workout));
-
-        $('#playlist-container').append(
-            `<img class="card-img-top" alt="" class="gif freezeFrame" src="${playlistArr[i].gifUrl}">
-                    <div class="name">${playlistArr[i].name}</div>
-                    <div class="bodypart">${playlistArr[i].bodyPart}</span>
-                    <div class="equipment">${playlistArr[i].equipment}</div>
-                    <div class="muscle">${playlistArr[i].target}</div>
+        $('#playlist-title-container')
+            .append(`
+            <div class="card text-white bg-secondary col-lg-3 mb-2 mt-2 p-0">
+                    <div class="card-header name text-center">${playlistArr[i].name}</div>
+                    <img class="card-img-top" alt="" class="gif freezeFrame" src="${playlistArr[i].gifUrl}">    
+                    <div class="bodypart text-center">Bodypart: ${playlistArr[i].bodyPart}</div>
+                    <div class="equipment text-center">Equipment Needed: ${playlistArr[i].equipment}</div>
+                    <div class="target text-center">Target Area: ${playlistArr[i].target}</div>
                     <button class="delete-playlist-btn btn-danger" data-id=${playlistArr[i].id}>Delete</button>
-      `)
+            </div>
+      `);
     }
     setWorkoutHoverEvent();
 }
