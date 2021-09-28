@@ -17,20 +17,12 @@ export default function Profile(props) {
         </div>
         </form>
         </div>
-<<<<<<< HEAD
-        
-=======
        
->>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
          <div id="playlist-container" class="container row justify-between">
          
          </div>
 
-<<<<<<< HEAD
-             
-=======
-              </div>
->>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
+         </div>
         </main>
     `;
 }
@@ -38,7 +30,6 @@ export default function Profile(props) {
 export function playlistEvent(){
     createPlaylist()
     getUserPlaylists()
-    deletePlaylist();
 }
 
 
@@ -49,8 +40,8 @@ function filterWorkoutObject(data) {
         console.log(data[i])
         for (let j = 0; j < data[i].workouts.length; j++){
             console.log(data[i].workouts[j])
-        playlistObjArr.push(JSON.parse(data[i].workouts[j].workout))
-    }}
+            playlistObjArr.push(JSON.parse(data[i].workouts[j].workout))
+        }}
     return playlistObjArr;
 }
 
@@ -61,6 +52,7 @@ function appendAllPlaylistData(workoutArr) {
             .append(getPlaylistCard(obj))
     })
     setWorkoutHoverEvent();
+    deletePlaylist()
 }
 
 
@@ -69,20 +61,12 @@ function getPlaylistCard(PlaylistObj) {
     console.log(workoutsCard)
     console.log(PlaylistObj)
     workoutsCard.append(
-<<<<<<< HEAD
-        `<img alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
-=======
         `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
->>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
                     <div class="name">${PlaylistObj.name}</div>
                     <div class="bodypart">${PlaylistObj.bodyPart}</span>
                     <div class="equipment">${PlaylistObj.equipment}</div>
                     <div class="muscle">${PlaylistObj.target}</div>
-<<<<<<< HEAD
-                    <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
-=======
                     <button class="delete-playlist-btn form-control btn-danger" data-id=${PlaylistObj.id}>Delete</button>
->>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
       `
     )
     return workoutsCard
@@ -114,14 +98,15 @@ function getUserPlaylists(){
 
 function deletePlaylist() {
     $(".delete-playlist-btn").click(function (){
+        console.log("click")
         let request = {
             method: "DELETE",
-            headers: {"Content-Type":"application/json"},
+            headers: getHeaders(),
         }
         let id = $(this).attr("data-id");
 
 
-        fetch(`http://localhost:8080/api/${id}`, request)
+        fetch(`http://localhost:8080/api/playlists/${id}`, request)
             .then(res => {
                 console.log(res.status);
                 createView("/profile")
@@ -132,10 +117,7 @@ function deletePlaylist() {
 
     })
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 8d6d6607fca60bb616f68a274e235848e651c304
 export function createPlaylist(){
     console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
@@ -163,4 +145,3 @@ export function createPlaylist(){
             })
     })
 }
-

@@ -23,12 +23,12 @@ export default function Macros(props) {
       
                         <div class="form-outline mb-4">
                            <input type="text" id="height" class="form-control form-control-lg" />
-                           <label class="form-label" for="height">Height</label>
+                           <label class="form-label" for="height">Height(cm)</label>
                         </div>
       
                         <div class="form-outline mb-4">
                            <input type="text" id="weight" class="form-control form-control-lg" />
-                           <label class="form-label" for="weight">Weight</label>
+                           <label class="form-label" for="weight">Weight(kg)</label>
                         </div>
                         
                         <div class="form-group col-md-12">
