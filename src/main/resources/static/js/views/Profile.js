@@ -16,12 +16,11 @@ export default function Profile(props) {
         </form>
         </div>
         <div id="all-playlist"></div>
-        <div id="playlist-title-container">
-         <div id="playlist-container" class="container row justify-between">
-         
-         </div>
-</div>
-             
+        <div id="daddy-container">
+            <div id="playlist-title-container">
+                <div id="playlist-container" class="container row justify-between"></div>
+            </div>
+        </div>     
         </main>
     `;
 }
@@ -46,6 +45,9 @@ function getWorkoutsByID(){
     $(".btn")
         .click(function () {
             let id = $(this).val();
+            $('#playlist-container').empty();
+
+
 
             fetch(`http://localhost:8080/api/playlists/${id}`, {
                 "method": "GET",
@@ -70,12 +72,12 @@ function appendAllPlaylistData(playlist) {
     let playlistArr=[];
 
     for(let i = 0; i < playlist.workouts.length; i++){
-        console.log(playlist.workouts[i].workout);
 
         $('#playlist-title-container')
-            .append(playlist[i].title);
+            .append(playlist.title);
+
         playlistArr.push(JSON.parse(playlist.workouts[i].workout));
-        console.log(playlistArr);
+
         $('#playlist-container').append(
             `<img class="card-img-top" alt="" class="gif freezeFrame" src="${playlistArr[i].gifUrl}">
                     <div class="name">${playlistArr[i].name}</div>

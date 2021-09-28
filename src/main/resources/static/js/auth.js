@@ -30,6 +30,7 @@ export default function LoginEvent() {
             setTokens(data);
 
             createView("/profile");
+
         });
     });
 
