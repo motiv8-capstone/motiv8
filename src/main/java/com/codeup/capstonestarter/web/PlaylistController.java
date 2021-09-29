@@ -67,4 +67,5 @@ public class PlaylistController {
         playlist.removeWorkout(workout);
         playlistRepository.save(playlist);
     }
+
 }

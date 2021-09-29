@@ -1,6 +1,6 @@
 import Home from "./views/Home.js";
 import {init} from "./views/Workouts.js";
-import LoginEvent from "./auth.js";
+import LoginEvent, {logOutEvent} from "./auth.js";
 import Error404 from "./views/Error404.js";
 import Macros, {getCalories} from "./views/Macros.js";
 import Register, {RegisterEvent} from "./views/Register.js";
@@ -25,6 +25,7 @@ export default function router(URI) {
             state: {},
             uri: '/',
             title: 'Home',
+
         },
         '/workouts': {
             returnView: Workouts,
@@ -70,6 +71,13 @@ export default function router(URI) {
             uri: '/profile',
             title: 'Profile',
             viewEvent: playlistEvent
+        },
+        '/logout':{
+            returnView: Home,
+            state: {},
+            uri: '/logout',
+            title: 'Logout',
+            viewEvent: logOutEvent
         }
 
 
