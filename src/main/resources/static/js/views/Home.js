@@ -25,7 +25,7 @@ export default function Home(props) {
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                        <h2 class="h4 fw-bolder">Need help planning a workout?</h2>
+                        <h2 class="h4 fw-bolder">Need Help Planning A Workout?</h2>
                         <p>Effortlessly use our workout page to view all workouts based off what body part you want to work out. We have a variety workouts to choose from!</p>                       
                         </a>
                     </div>
