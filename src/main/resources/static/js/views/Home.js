@@ -20,19 +20,19 @@ export default function Home(props) {
                 <div class="row gx-5"> 
                     <div class="col-lg-4 mb-5 mb-lg-0 border border-dark rounded">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                        <h2 class="h4 fw-bolder">Create Playlists on the fly</h2>
-                        <p>Create different playlists designed for your workout needs! Select from a wide range of different exercises.</p>
+                        <h2 class="h4 fw-bolder">End Accountability Issues</h2>
+                        <p>Having trouble remembering which workout to do next? Well, registered users can create playlist's of workouts and use them any time they need to!</p>
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0 border border-dark rounded">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                        <h2 class="h4 fw-bolder">Edit Playlists</h2>
-                        <p>Does a certain workout no longer suit your needs? Go ahead and remove that workout from your playlist from your profile page!</p>                       
+                        <h2 class="h4 fw-bolder">Need Help Planning A Workout?</h2>
+                        <p>Effortlessly use our workout page to view all workouts based off what body part you want to work out. We have a variety workouts to choose from!</p>                       
                         </a>
                     </div>
                     <div class="col-lg-4 border border-dark rounded">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                        <h2 class="h4 fw-bolder">Detailed Gif's</h2>
-                        <p>Not sure how to do a workout? Not to worry! Each workout comes with a detailed gif showcasing how the workout is done, as well as which muscles it targets!</p>                       
+                        <h2 class="h4 fw-bolder">Track Your Calories</h2>                       
+                        <p>You can enter your data into the calculator and it will recommend you how many calories you need to intake based on your data.</p>                       
                         </a>
                     </div>
                 </div>
