@@ -63,16 +63,8 @@ public class PlaylistController {
     @DeleteMapping("{id}")
     private void deleteWorkoutFromPlaylist(@PathVariable Long id, Long workoutID){
         Playlist playlist = playlistRepository.findById(id).get();
-        List<Workout> remainingWorkouts = new ArrayList<>();
-        List<Workout> workouts = playlist.getWorkouts();
-        for (Workout workout: workouts) {
-            if (workoutID != workout.getId()){
-                remainingWorkouts.add(workout);
-            }
-        }
-        playlist.setWorkouts(remainingWorkouts);
+        Workout workout = workoutsRepository.findById(workoutID).get();
+        playlist.removeWorkout(workout);
         playlistRepository.save(playlist);
-
-
     }
 }

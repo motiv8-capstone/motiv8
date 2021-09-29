@@ -77,4 +77,8 @@ public class Playlist {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void removeWorkout(Workout workout) {
+        this.workouts.remove(workout);
+    }
 }

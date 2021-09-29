@@ -39,7 +39,6 @@ export function playlistEvent(){
 
 
 function getAllPlaylistsButtons(data) {
-    console.log(data)
     for (let i = 0; i < data.length; i++) {
         // console.log(data[i])
         $('#all-playlist')
@@ -145,12 +144,12 @@ function deletePlaylist() {
     $(".delete-playlist-btn").click(function (){
         let request = {
             method: "DELETE",
-            headers: {"Content-Type":"application/json"},
+            headers: getHeaders(),
         }
         let workoutId = $(this).attr("data-id");
         let playlistId = $(this).val();
-        console.log("Workout ID: " + workoutId  + " Playlist ID: " + playlistId)
-
+        console.log("Workout Id: " + workoutId);
+        console.log("Playlist Id: " + playlistId);
 
         fetch(`/api/playlists/${playlistId}?workoutID=${workoutId}`, request)
             .then(res => {
@@ -165,7 +164,6 @@ function deletePlaylist() {
 }
 
 export function createPlaylist(){
-    console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
 
         let playlistTitle = $("#playlist-title").val();
