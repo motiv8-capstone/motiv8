@@ -5,6 +5,7 @@ import com.codeup.capstonestarter.data.playlist.Playlist;
 import com.codeup.capstonestarter.data.playlist.PlaylistRepository;
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UserRepository;
+import com.codeup.capstonestarter.data.workouts.Workout;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,6 +54,7 @@ public class PlaylistController {
     private Playlist findByID(@PathVariable Long id){
         return playlistRepository.findById(id).get();
     }
+
 
 
 }

@@ -108,7 +108,7 @@ function getWorkoutCard(workoutObj) {
       <div class="target text-center">Target Muscle: ${workoutObj.target}</div>
       <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
       <div class="card-footer">
-      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn btn btn-secondary form-control">Select</button>
+      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn btn btn-secondary form-control">Add to Playlist</button>
       </div>
       </div>
       </div>`
