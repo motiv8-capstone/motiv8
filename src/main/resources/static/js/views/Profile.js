@@ -4,23 +4,30 @@ import {getHeaders} from "../auth.js";
 
 export default function Profile(props) {
     return `
-        <header>
-            <h1>Profile Page</h1>
-        </header>
-        <main>
-        <div>
-        <form id="playlist-create">
-            <label for="playlist-title">Playlist Name</label>
-            <input id="playlist-title" name="playlist-title" type="text">
-            <button type="button" id="playlist-create-btn">Create Playlist</button>
-        </form>
-        </div>
-        <div id="all-playlist"></div>
-        <div id="daddy-container">
-            <div id="playlist-title-container">
-                <div id="playlist-container" class="container row justify-between"></div>
+<main>
+            <div class="container-fluid">
+                    <div class="row flex-xl-nowrap">
+                        <header>
+                            <h1>Profile Page</h1>
+                        </header>
+                    </div>
+                    <div class="row flex-xl-nowrap">
+                        
+                        <div id="all-playlist" class="col-sm bd-sidebar"></div>
+                        
+                    </div>
+                        <div class="row flex-xl-nowrap">
+                            <div class="col-6">
+                            <form id="playlist-create">
+                                <label for="playlist-title">Playlist Name</label>
+                                <input id="playlist-title" name="playlist-title" type="text">
+                                <button type="button" id="playlist-create-btn">Create Playlist</button>
+                            </form>
+                            </div>
+                        </div>
+                        <div id="playlist-title-container" class="container row justify-between"></div>
+                
             </div>
-        </div>     
         </main>
     `;
 }
@@ -32,7 +39,6 @@ export function playlistEvent(){
 
 
 function getAllPlaylistsButtons(data) {
-    console.log(data)
     for (let i = 0; i < data.length; i++) {
         // console.log(data[i])
         $('#all-playlist')
@@ -45,11 +51,11 @@ function getWorkoutsByID(){
     $(".btn")
         .click(function () {
             let id = $(this).val();
-            $('#playlist-container').empty();
+            $('#playlist-title-container').empty();
 
 
 
-            fetch(`http://localhost:8080/api/playlists/${id}`, {
+            fetch(`/api/playlists/${id}`, {
                 "method": "GET",
                 "headers": getHeaders()
             })
@@ -70,43 +76,45 @@ function getWorkoutsByID(){
 
 function appendAllPlaylistData(playlist) {
     let playlistArr=[];
+    $('#playlist-title-container')
+        .append(playlist.title);
+
 
     for(let i = 0; i < playlist.workouts.length; i++){
-
-        $('#playlist-title-container')
-            .append(playlist.title);
-
         playlistArr.push(JSON.parse(playlist.workouts[i].workout));
-
-        $('#playlist-container').append(
-            `<img class="card-img-top" alt="" class="gif freezeFrame" src="${playlistArr[i].gifUrl}">
-                    <div class="name">${playlistArr[i].name}</div>
-                    <div class="bodypart">${playlistArr[i].bodyPart}</span>
-                    <div class="equipment">${playlistArr[i].equipment}</div>
-                    <div class="muscle">${playlistArr[i].target}</div>
-                    <button class="delete-playlist-btn btn-danger" data-id=${playlistArr[i].id}>Delete</button>
-      `)
+        $('#playlist-title-container')
+            .append(`
+            <div class="card text-white bg-secondary col-lg-3 mb-2 mt-2 p-0">
+                    <div class="card-header name text-center">${playlistArr[i].name}</div>
+                    <img class="card-img-top" alt="" class="gif freezeFrame" src="${playlistArr[i].gifUrl}">    
+                    <div class="bodypart text-center">Bodypart: ${playlistArr[i].bodyPart}</div>
+                    <div class="equipment text-center">Equipment Needed: ${playlistArr[i].equipment}</div>
+                    <div class="target text-center">Target Area: ${playlistArr[i].target}</div>
+                    <button class="delete-playlist-btn btn-danger" value="${playlist.id}" data-id=${playlist.workouts[i].id}>Delete</button>
+            </div>
+      `);
     }
     setWorkoutHoverEvent();
+    deletePlaylist();
 }
 
 
 
 
-function getPlaylistCard(PlaylistObj) {
-    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
-    // console.log(PlaylistObj);
-    workoutsCard.append(
-        `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
-                    <div class="name">${PlaylistObj.name}</div>
-                    <div class="bodypart">${PlaylistObj.bodyPart}</span>
-                    <div class="equipment">${PlaylistObj.equipment}</div>
-                    <div class="muscle">${PlaylistObj.target}</div>
-                    <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
-      `
-    )
-    return workoutsCard
-}
+// function getPlaylistCard(PlaylistObj) {
+//     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
+//     // console.log(PlaylistObj);
+//     workoutsCard.append(
+//         `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
+//                     <div class="name">${PlaylistObj.name}</div>
+//                     <div class="bodypart">${PlaylistObj.bodyPart}</span>
+//                     <div class="equipment">${PlaylistObj.equipment}</div>
+//                     <div class="muscle">${PlaylistObj.target}</div>
+//                     <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
+//       `
+//     )
+//     return workoutsCard
+// }
 
 
 function setWorkoutHoverEvent() {
@@ -116,7 +124,7 @@ function setWorkoutHoverEvent() {
 
 
 function getUserPlaylists(){
-    fetch(`http://localhost:8080/api/playlists/`, {
+    fetch(`/api/playlists/`, {
         "method": "GET",
         "headers": getHeaders()
     })
@@ -136,12 +144,14 @@ function deletePlaylist() {
     $(".delete-playlist-btn").click(function (){
         let request = {
             method: "DELETE",
-            headers: {"Content-Type":"application/json"},
+            headers: getHeaders(),
         }
-        let id = $(this).attr("data-id");
+        let workoutId = $(this).attr("data-id");
+        let playlistId = $(this).val();
+        console.log("Workout Id: " + workoutId);
+        console.log("Playlist Id: " + playlistId);
 
-
-        fetch(`http://localhost:8080/api/${id}`, request)
+        fetch(`/api/playlists/${playlistId}?workoutID=${workoutId}`, request)
             .then(res => {
                 console.log(res.status);
                 createView("/profile")
@@ -154,7 +164,6 @@ function deletePlaylist() {
 }
 
 export function createPlaylist(){
-    console.log("createPlaylist triggered")
     $("#playlist-create-btn").click(function(){
 
         let playlistTitle = $("#playlist-title").val();
@@ -171,7 +180,7 @@ export function createPlaylist(){
             body: JSON.stringify(playlistObj)
         };
 
-        fetch("http://localhost:8080/api/playlists", request)
+        fetch("/api/playlists", request)
             .then((response) => {
                 console.log(response.status)
             })

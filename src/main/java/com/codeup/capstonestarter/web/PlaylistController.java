@@ -6,21 +6,25 @@ import com.codeup.capstonestarter.data.playlist.PlaylistRepository;
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UserRepository;
 import com.codeup.capstonestarter.data.workouts.Workout;
+import com.codeup.capstonestarter.data.workouts.WorkoutsRepository;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/playlists", headers = "Accept=application/json")
+@RequestMapping(value = "/api/playlists", headers = "Accept=application/json", produces = "application/json")
 public class PlaylistController {
 
     private final PlaylistRepository playlistRepository;
     private final UserRepository userRepository;
+    private final WorkoutsRepository workoutsRepository;
 
-    public PlaylistController(PlaylistRepository playlistRepository, UserRepository userRepository) {
+    public PlaylistController(PlaylistRepository playlistRepository, UserRepository userRepository, WorkoutsRepository workoutsRepository) {
         this.playlistRepository = playlistRepository;
         this.userRepository = userRepository;
+        this.workoutsRepository = workoutsRepository;
     }
 
     @GetMapping
@@ -56,5 +60,12 @@ public class PlaylistController {
     }
 
 
+    @DeleteMapping("{id}")
+    private void deleteWorkoutFromPlaylist(@PathVariable Long id, Long workoutID){
+        Playlist playlist = playlistRepository.findById(id).get();
+        Workout workout = workoutsRepository.findById(workoutID).get();
+        playlist.removeWorkout(workout);
+        playlistRepository.save(playlist);
+    }
 
 }
