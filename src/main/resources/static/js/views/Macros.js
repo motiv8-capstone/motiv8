@@ -57,7 +57,7 @@ export default function Macros(props) {
                         
                         <div class="form-group col-md-12">
                            <label for="inputState">Goals</label>
-                              <select id="goals" class="form-control">
+                              <select id="goals" class="form-select">
                                  <option value="maintain">Maintain Weight</option>
                                  <option value="mildlose">Mild Weight Loss</option>
                                  <option value="weightlose">Weight Loss</option>
