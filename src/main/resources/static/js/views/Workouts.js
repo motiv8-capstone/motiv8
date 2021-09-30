@@ -102,15 +102,10 @@ function getWorkoutCard(workoutObj) {
 	workoutsCard.append(
 		`<div class="workout-card">
       <div class="card-header name text-center">${workoutObj.name}</div>
-      <div class="card-body">
+      <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame card-img-top" src="${workoutObj.gifUrl}">
       <div class="equipment text-center">Equipment: ${workoutObj.equipment}</div>
-      <br>
       <div class="target text-center">Target Muscle: ${workoutObj.target}</div>
-      <img alt="" data-id="${workoutObj.gifUrl}" class="gif freezeFrame" src="${workoutObj.gifUrl}">
-      <div class="card-footer">
-      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn btn btn-secondary form-control">Add to Playlist</button>
-      </div>
-      </div>
+      <button type="submit" data-id="${workoutObj.id}" class="workout-submit-btn btn btn-dark form-control">Add to Playlist</button>
       </div>`
 	)
 	return workoutsCard
