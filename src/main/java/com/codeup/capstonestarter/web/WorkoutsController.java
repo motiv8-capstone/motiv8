@@ -1,6 +1,8 @@
 package com.codeup.capstonestarter.web;
 
 
+import com.codeup.capstonestarter.data.playlist.Playlist;
+import com.codeup.capstonestarter.data.playlist.PlaylistRepository;
 import com.codeup.capstonestarter.data.workouts.Workout;
 import com.codeup.capstonestarter.data.workouts.WorkoutsRepository;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,11 @@ import java.util.List;
 public class WorkoutsController {
 
     private final WorkoutsRepository workoutsRepository;
+    private final PlaylistRepository playlistRepository;
 
-    public WorkoutsController(WorkoutsRepository workoutsRepository) {
+    public WorkoutsController(WorkoutsRepository workoutsRepository, PlaylistRepository playlistRepository) {
         this.workoutsRepository = workoutsRepository;
+        this.playlistRepository = playlistRepository;
     }
 
     @GetMapping
@@ -35,9 +39,11 @@ public class WorkoutsController {
     }
 
     @DeleteMapping("{id}")
-    private void deleteWorkout(@PathVariable Long id) {
-        workoutsRepository.deleteById(id);
+    private void deleteWorkoutFromPlaylist(@PathVariable Long id, Long workoutID){
+        Playlist playlist = playlistRepository.findById(id).get();
+        Workout workout = workoutsRepository.findById(workoutID).get();
+        playlist.removeWorkout(workout);
+        playlistRepository.save(playlist);
     }
-
 
 }

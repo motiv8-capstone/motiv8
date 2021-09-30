@@ -3,145 +3,230 @@ import {getHeaders} from "../auth.js";
 
 
 export default function Profile(props) {
-    return `
-        <header>
-            <h1 class="text-center mb-5 mt-3">Profile Page</h1>
-        </header>
-        <main>
-        <div class="container-fluid">
-        <div class="input-group-lg">
-        <form id="playlist-create">
-        <input id="playlist-title" class="form-control" name="playlist-title" placeholder="Create a Playlist" type="text">  
-        <div class="input-group-prepend">
-        <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create</button>
-        </div>
-        </form>
-        </div>
-       
-         <div id="playlist-container" class="container row justify-between">
-         
+	return `
+<main>
+                  <header>
+                            <h1 class="text-center mt-2">Profile</h1>
+                        </header>
+         <div class="container py-5">
+         <div class="jumbotron text-white jumbotron-image shadow" style="background-image: url(https://images.unsplash.com/photo-1540496905036-5937c10647cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80);">
          </div>
-
-              </div>
+         </div>
+            <div class="container">
+                    <div class="row flex-xl-nowrap">
+                       
+                    </div>
+                    <div class="row flex-xl-nowrap">
+                        
+                       
+                        
+                    </div>
+                    <div class="input-group mb-3">                   
+                            <input id="playlist-title" class="form-control" name="playlist-title" type="text">                 
+                               <div class="input-group-prepend">
+                           <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create Playlist</button>
+                            </div>                        
+                    </div>
+                    <div class="input-group mb-3">
+                            <select name="playlistDelete" id="playlistsDelete" class="form-select selectPlaylist">
+                           </select>
+                           <div class="input-group-prepend">
+                           <button type="submit" id="playlist-to-delete" class="btn btn-dark">Delete Playlist</button>
+                            </div>
+                  </div>
+                  <h2>Your Playlists:</h2>
+                  <br>
+                  <div id="all-playlist" class="row">
+                        
+               </div>
+                  <div id="playlist-title-container" class="container-fluid row justify-between">
+                  
+               </div>
+               
+                
+         </div>
         </main>
     `;
 }
 
-export function playlistEvent(){
-    createPlaylist()
-    getUserPlaylists()
-    deletePlaylist();
+export function playlistEvent() {
+	createPlaylist()
+	getUserPlaylists()
 }
 
 
-function filterWorkoutObject(data) {
-    console.log(data)
-    let playlistObjArr = [];
-    for (let i = 0; i < data.length; i++) {
-        console.log(data[i])
-        for (let j = 0; j < data[i].workouts.length; j++){
-            console.log(data[i].workouts[j])
-        playlistObjArr.push(JSON.parse(data[i].workouts[j].workout))
-    }}
-    return playlistObjArr;
+function getAllPlaylistsButtons(data) {
+	for (let i = 0; i < data.length; i++) {
+		// console.log(data[i])
+		$('#all-playlist')
+			.append(`<button type="button" value="${data[i].id}" id="playlist-btn" class="btn btn-dark text-white col-3">${data[i].title}</button>`)
+	}
+	getWorkoutsByID()
+}
+
+function getWorkoutsByID() {
+	$(".btn")
+		.click(function () {
+			let id = $(this)
+				.val();
+			$('#playlist-title-container')
+				.empty();
+
+
+			fetch(`/api/playlists/${id}`, {
+				"method": "GET",
+				"headers": getHeaders()
+			})
+				.then(response => {
+					return (response.json());
+				})
+				.then(function (data) {
+					// console.log(data)
+					appendAllPlaylistData(data)
+				})
+				.catch(err => {
+					console.error(err);
+				});
+
+		})
 }
 
 
-function appendAllPlaylistData(workoutArr) {
-    workoutArr.forEach(function (obj) {
-        $('#playlist-container')
-            .append(getPlaylistCard(obj))
-    })
-    setWorkoutHoverEvent();
+function appendAllPlaylistData(playlist) {
+	let playlistArr = [];
+	$('#playlist-title-container')
+		.append(`<h1 class="text-center">Playlist: ${playlist.title}</h1> <br>`);
+
+
+	for (let i = 0; i < playlist.workouts.length; i++) {
+		playlistArr.push(JSON.parse(playlist.workouts[i].workout));
+		$('#playlist-title-container')
+			.append(`
+            <div class="card text-white bg-secondary col-lg-3 mb-2 mt-2 p-0">
+                    <div class="card-header name text-center">${playlistArr[i].name}</div>
+                    <img class="card-img-top" alt="" class="gif freezeFrame" src="${playlistArr[i].gifUrl}">    
+                    <div class="bodypart text-center">Bodypart: ${playlistArr[i].bodyPart}</div>
+                    <div class="equipment text-center">Equipment Needed: ${playlistArr[i].equipment}</div>
+                    <div class="target text-center">Target Area: ${playlistArr[i].target}</div>
+                    <button class="delete-workout-btn btn btn-danger" value="${playlist.id}" data-id="${playlist.workouts[i].id}">Remove from Playlist</button>
+            </div>
+      `);
+	}
+	setWorkoutHoverEvent();
+	deleteWorkout();
 }
-
-
-function getPlaylistCard(PlaylistObj) {
-    let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
-    console.log(workoutsCard)
-    console.log(PlaylistObj)
-    workoutsCard.append(
-        `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
-                    <div class="name">${PlaylistObj.name}</div>
-                    <div class="bodypart">${PlaylistObj.bodyPart}</span>
-                    <div class="equipment">${PlaylistObj.equipment}</div>
-                    <div class="muscle">${PlaylistObj.target}</div>
-                    <button class="delete-playlist-btn form-control btn-danger" data-id=${PlaylistObj.id}>Delete</button>
-      `
-    )
-    return workoutsCard
-}
-
 
 function setWorkoutHoverEvent() {
-    const f = new Freezeframe(".gif", {trigger: "hover"});
-    f.toggle()
+	const f = new Freezeframe(".gif", {trigger: "hover"});
+	f.toggle()
 }
 
 
-function getUserPlaylists(){
-    fetch(`/api/playlists/`, {
-        "method": "GET",
-        "headers": getHeaders()
-    })
-        .then(response => {
-            return (response.json());
-        })
-        .then(function (data){
-            console.log(data)
-            appendAllPlaylistData(filterWorkoutObject(data))
-        })
-        .catch(err => {
-            console.error(err);
-        });
+function getUserPlaylists() {
+	fetch(`/api/playlists/`, {
+		"method": "GET",
+		"headers": getHeaders()
+	})
+		.then(response => {
+			return (response.json());
+		})
+		.then(function (data) {
+			getAllPlaylistsButtons(data);
+			playlistOptions(data);
+		})
+		.catch(err => {
+			console.error(err);
+		});
+}
+
+function deleteWorkout() {
+	$(".delete-workout-btn")
+		.click(function () {
+			let request = {
+				method: "DELETE",
+				headers: getHeaders(),
+			}
+			let workoutId = $(this)
+				.attr("data-id");
+			let playlistId = $(this)
+				.val();
+			console.log("Workout Id: " + workoutId);
+			console.log("Playlist Id: " + playlistId);
+
+			fetch(`/api/workouts/${playlistId}?workoutID=${workoutId}`, request)
+				.then(res => {
+					console.log(res.status);
+					createView("/profile")
+				})
+				.catch(error => {
+					console.log(error);
+					createView("/profile")
+				});
+
+		})
+}
+
+export function createPlaylist() {
+	$("#playlist-create-btn")
+		.click(function () {
+
+			let playlistTitle = $("#playlist-title")
+				.val();
+
+			let playlistObj = {
+				title: playlistTitle
+			}
+
+			console.log(playlistTitle)
+
+			let request = {
+				method: "POST",
+				headers: getHeaders(),
+				body: JSON.stringify(playlistObj)
+			};
+
+			fetch("/api/playlists", request)
+				.then((response) => {
+					console.log(response.status)
+				})
+				.catch(error => {
+					console.log(error)
+				})
+		})
+}
+
+function playlistOptions(data) {
+
+	for (let i = 0; i < data.length; i++) {
+		$(".selectPlaylist")
+			.append(`
+        <option class="playlist-delete" value="${data[i].id}">${data[i].title}</option>
+        
+`)
+	}
+	deletePlaylist();
 }
 
 function deletePlaylist() {
-    $(".delete-playlist-btn").click(function (){
-        let request = {
-            method: "DELETE",
-            headers: {"Content-Type":"application/json"},
-        }
-        let id = $(this).attr("data-id");
+	$("#playlist-to-delete")
+		.click(function () {
+			let request = {
+				method: "DELETE",
+				headers: getHeaders(),
+			}
+			let selectedOption = $('#playlistsDelete')
+				.find(":selected")
+				.val();
 
+			fetch(`/api/playlists/${selectedOption}`, request)
+				.then(res => {
+					console.log(res.status);
+					createView("/profile")
+				})
+				.catch(error => {
+					console.log(error);
+					createView("/profile")
+				});
 
-        fetch(`http://localhost:8080/api/${id}`, request)
-            .then(res => {
-                console.log(res.status);
-                createView("/profile")
-            }).catch(error => {
-            console.log(error);
-            createView("/profile")
-        });
-
-    })
+		})
 }
-
-export function createPlaylist(){
-    console.log("createPlaylist triggered")
-    $("#playlist-create-btn").click(function(){
-
-        let playlistTitle = $("#playlist-title").val();
-
-        let playlistObj = {
-            title: playlistTitle
-        }
-
-        console.log(playlistTitle)
-
-        let request = {
-            method: "POST",
-            headers: getHeaders(),
-            body: JSON.stringify(playlistObj)
-        };
-
-        fetch("/api/playlists", request)
-            .then((response) => {
-                console.log(response.status)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    })
-}
-

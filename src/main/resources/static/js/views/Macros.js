@@ -10,7 +10,7 @@ export default function Macros(props) {
                <div class="col-sm-6 text-black">
                   <div class="px-5 ms-xl-4">
                      <i class="fas fa-crow fa-2x pt-3 mt-xl-4" style="color: #709085;"></i>
-                     <span class="h1 fw-bold mb-0"><img src="https://i.pinimg.com/564x/32/ee/9d/32ee9dbc5df08a254e90bbefe2a9d194.jpg" alt="Logo" width="100" height="100"> </span>
+                     
                   </div>
                   <div class="d-flex align-items-start px-5 ms-xl-4 pt-5 pt-xl-0 mt-xl-n5">
                      <form style="width: 23rem;">
@@ -22,13 +22,16 @@ export default function Macros(props) {
                         </div>
       
                         <div class="form-outline mb-4">
-                           <input type="text" id="height" class="form-control form-control-lg" />
-                           <label class="form-label" for="height">Height</label>
+                        <p>Height:</p>
+                           <input type="text" id="feet" class="form-control form-control-lg" />
+                           <label class="form-label" for="feet">Ft.</label>
+                           <input type="text" id="inches" class="form-control form-control-lg" />
+                           <label class="form-label" for="inches">In.</label>
                         </div>
       
                         <div class="form-outline mb-4">
-                           <input type="text" id="weight" class="form-control form-control-lg" />
-                           <label class="form-label" for="weight">Weight</label>
+                      	   <label class="form-label" for="weight">Weight</label>
+                           <input type="text" id="weight" class="form-control form-control-lg" /><p>lbs.</p>                    
                         </div>
                         
                         <div class="form-group col-md-12">
@@ -86,18 +89,25 @@ export default function Macros(props) {
 }
 
 export function getCalories() {
+
 	$("#submit-calorie-btn")
 		.click(function () {
 			let ageOption = $("#age")
 				.val();
-			let heightOption = $("#height")
-				.val()
+
+			let feet = $('#feet').val() * 30.48;
+			let inches = $('#inches').val()  * 2.54;
+
+			let heightOption = feet + inches;
+
 			let genderOption = $("#genderSelect")
 				.val()
 			let activityLevelOption = $("#activity-level :selected")
 				.val()
-			let weightOption = $("#weight")
-				.val()
+
+
+			let weightOption = $("#weight").val() / 2.205;
+
 			let goalOption = $("#goals")
 				.val()
 
@@ -113,7 +123,7 @@ export function getCalories() {
 				})
 				.then(function (data) {
 					console.log(data)
-					alert(`Proper calorie intake should be: ${data.calorie} calories`)
+					alert(`Proper calorie intake to reach your goal should be: ${Math.round(data.calorie)} calories per day`)
 				})
 				.catch(err => {
 					console.log(err)

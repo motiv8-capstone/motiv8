@@ -28,9 +28,18 @@ export default function LoginEvent() {
             },
             request).then((data) => {
             setTokens(data);
-            createView("/workouts");
+
+            createView("/profile");
+
         });
     });
+
+}
+
+export function logOutEvent(){
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    createView("/")
 }
 
 /**
@@ -61,4 +70,6 @@ function setTokens(responseData) {
         localStorage.setItem("refresh_token", responseData.route['refresh_token']);
         console.log("Refresh token set")
     }
+
+
 }
