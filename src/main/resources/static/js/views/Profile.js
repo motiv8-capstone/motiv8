@@ -5,7 +5,7 @@ import {getHeaders} from "../auth.js";
 export default function Profile(props) {
 	return `
 <main>
-            <div class="container-fluid">
+            <div class="container">
                     <div class="row flex-xl-nowrap">
                         <header>
                             <h1 class="text-center mt-2">Profile</h1>
@@ -13,7 +13,9 @@ export default function Profile(props) {
                     </div>
                     <div class="row flex-xl-nowrap">
                         
-                        <div id="all-playlist" class="col-sm bd-sidebar"></div>
+                        <div id="all-playlist" class="row">
+                        
+						</div>
                         
                     </div>
                     <div class="input-group mb-3">                   
@@ -29,7 +31,10 @@ export default function Profile(props) {
 	                        <button type="submit" id="playlist-to-delete" class="btn btn-dark">Delete Playlist</button>
                             </div>
             		</div>
-            		<div id="playlist-title-container" class="container row justify-between"></div>
+            		<div id="playlist-title-container" class="container-fluid row justify-between">
+            		
+					</div>
+			</div>
         </main>
     `;
 }
@@ -44,7 +49,7 @@ function getAllPlaylistsButtons(data) {
 	for (let i = 0; i < data.length; i++) {
 		// console.log(data[i])
 		$('#all-playlist')
-			.append(`<button type="button" value="${data[i].id}" id="playlist-btn" class="btn btn-link">${data[i].title}</button>`)
+			.append(`<button type="button" value="${data[i].id}" id="playlist-btn" class="btn btn-info text-white">${data[i].title}</button>`)
 	}
 	getWorkoutsByID()
 }
@@ -80,7 +85,7 @@ function getWorkoutsByID() {
 function appendAllPlaylistData(playlist) {
 	let playlistArr = [];
 	$('#playlist-title-container')
-		.append(playlist.title);
+		.append(`<h1 class="text-center">Playlist: ${playlist.title}</h1> <br>`);
 
 
 	for (let i = 0; i < playlist.workouts.length; i++) {
