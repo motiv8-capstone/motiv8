@@ -94,10 +94,6 @@ function getWorkoutsByID() {
 
 function appendAllPlaylistData(playlist) {
 	let playlistArr = [];
-	$('#playlist-title-container')
-		.append(`<h1 class="text-center">Playlist: ${playlist.title}</h1> <br>`);
-
-
 	for (let i = 0; i < playlist.workouts.length; i++) {
 		playlistArr.push(JSON.parse(playlist.workouts[i].workout));
 		$('#playlist-title-container')
