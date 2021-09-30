@@ -13,9 +13,7 @@ export default function Profile(props) {
                     </div>
                     <div class="row flex-xl-nowrap">
                         
-                        <div id="all-playlist" class="row">
-                        
-						</div>
+                       
                         
                     </div>
                     <div class="input-group mb-3">                   
@@ -31,9 +29,16 @@ export default function Profile(props) {
 	                        <button type="submit" id="playlist-to-delete" class="btn btn-dark">Delete Playlist</button>
                             </div>
             		</div>
+            		<h2>Your Playlists:</h2>
+            		<br>
+            		<div id="all-playlist" class="row">
+                        
+					</div>
             		<div id="playlist-title-container" class="container-fluid row justify-between">
             		
 					</div>
+					
+					 
 			</div>
         </main>
     `;
@@ -49,7 +54,7 @@ function getAllPlaylistsButtons(data) {
 	for (let i = 0; i < data.length; i++) {
 		// console.log(data[i])
 		$('#all-playlist')
-			.append(`<button type="button" value="${data[i].id}" id="playlist-btn" class="btn btn-info text-white">${data[i].title}</button>`)
+			.append(`<button type="button" value="${data[i].id}" id="playlist-btn" class="btn btn-dark text-white col-3">${data[i].title}</button>`)
 	}
 	getWorkoutsByID()
 }
@@ -143,7 +148,7 @@ function deleteWorkout() {
 			console.log("Workout Id: " + workoutId);
 			console.log("Playlist Id: " + playlistId);
 
-			fetch(`/api/playlists/${playlistId}?workoutID=${workoutId}`, request)
+			fetch(`/api/workouts/${playlistId}?workoutID=${workoutId}`, request)
 				.then(res => {
 					console.log(res.status);
 					createView("/profile")
