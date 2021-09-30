@@ -24,6 +24,11 @@ export default function Profile(props) {
                                 <button type="button" id="playlist-create-btn">Create Playlist</button>
                             </form>
                             </div>
+                            <div>
+                            <select name="playlistDelete" id="playlistsDelete" class="form-select selectPlaylist">
+	                        </select>
+	                        <button type="button" id="playlist-to-delete">Delete Playlist</button>
+                            </div>
                         </div>
                         <div id="playlist-title-container" class="container row justify-between"></div>
                 
@@ -95,27 +100,8 @@ function appendAllPlaylistData(playlist) {
       `);
     }
     setWorkoutHoverEvent();
-    deletePlaylist();
+    deleteWorkout();
 }
-
-
-
-
-// function getPlaylistCard(PlaylistObj) {
-//     let workoutsCard = $(`<div class="card col-lg-3 px-3 mb-2 mt-2"></div>`);
-//     // console.log(PlaylistObj);
-//     workoutsCard.append(
-//         `<img class="card-img-top" alt="" class="gif freezeFrame" src="${PlaylistObj.gifUrl}">
-//                     <div class="name">${PlaylistObj.name}</div>
-//                     <div class="bodypart">${PlaylistObj.bodyPart}</span>
-//                     <div class="equipment">${PlaylistObj.equipment}</div>
-//                     <div class="muscle">${PlaylistObj.target}</div>
-//                     <button class="delete-playlist-btn btn-danger" data-id=${PlaylistObj.id}>Delete</button>
-//       `
-//     )
-//     return workoutsCard
-// }
-
 
 function setWorkoutHoverEvent() {
     const f = new Freezeframe(".gif", {trigger: "hover"});
@@ -132,15 +118,15 @@ function getUserPlaylists(){
             return (response.json());
         })
         .then(function (data){
-            // console.log(data)
-            getAllPlaylistsButtons(data)
+            getAllPlaylistsButtons(data);
+            playlistOptions(data);
         })
         .catch(err => {
             console.error(err);
         });
 }
 
-function deletePlaylist() {
+function deleteWorkout() {
     $(".delete-playlist-btn").click(function (){
         let request = {
             method: "DELETE",
@@ -189,3 +175,38 @@ export function createPlaylist(){
             })
     })
 }
+
+function playlistOptions(data){
+
+    for (let i = 0; i < data.length; i++) {
+        console.log(data);
+        console.log(data[i].title)
+        $("#playlistDelete")
+            .append(`
+        <option class="playlist-delete" value="${data[i].id}">${data[i].title}</option>
+        
+`)
+    }
+    deletePlaylist();
+}
+
+function deletePlaylist(){
+    $("#playlist-to-delete").click(function (){
+        let request = {
+            method: "DELETE",
+            headers: getHeaders(),
+        }
+        let selectedOption = $('#playlistsDelete')
+                .find(":selected")
+                .val();
+
+        fetch(`/api/playlists/${selectedOption}`, request)
+            .then(res => {
+                console.log(res.status);
+                createView("/profile")
+            }).catch(error => {
+            console.log(error);
+            createView("/profile")
+        });
+
+})}

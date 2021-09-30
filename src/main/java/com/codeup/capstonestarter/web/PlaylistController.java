@@ -60,12 +60,11 @@ public class PlaylistController {
     }
 
 
+
+
     @DeleteMapping("{id}")
-    private void deleteWorkoutFromPlaylist(@PathVariable Long id, Long workoutID){
-        Playlist playlist = playlistRepository.findById(id).get();
-        Workout workout = workoutsRepository.findById(workoutID).get();
-        playlist.removeWorkout(workout);
-        playlistRepository.save(playlist);
+    private void deletePlaylist(@PathVariable Long id){
+        playlistRepository.deleteById(id);
     }
 
 }
