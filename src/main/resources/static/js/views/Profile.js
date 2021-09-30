@@ -179,9 +179,7 @@ export function createPlaylist(){
 function playlistOptions(data){
 
     for (let i = 0; i < data.length; i++) {
-        console.log(data);
-        console.log(data[i].title)
-        $("#playlistDelete")
+        $(".selectPlaylist")
             .append(`
         <option class="playlist-delete" value="${data[i].id}">${data[i].title}</option>
         
