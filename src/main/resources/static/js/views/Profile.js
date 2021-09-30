@@ -19,7 +19,7 @@ export default function Profile(props) {
                     <div class="input-group mb-3">                   
                             <input id="playlist-title" class="form-control" name="playlist-title" type="text">                 
                            	<div class="input-group-prepend">
-	                        <button type="submit" id="playlist-to-delete" class="btn btn-dark">Create Playlist</button>
+	                        <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create Playlist</button>
                             </div>                        
                     </div>
                     <div class="input-group mb-3">
@@ -93,7 +93,7 @@ function appendAllPlaylistData(playlist) {
                     <div class="bodypart text-center">Bodypart: ${playlistArr[i].bodyPart}</div>
                     <div class="equipment text-center">Equipment Needed: ${playlistArr[i].equipment}</div>
                     <div class="target text-center">Target Area: ${playlistArr[i].target}</div>
-                    <button class="delete-playlist-btn btn btn-danger" value="${playlist.id}" data-id="${playlist.workouts[i].id}">Remove from Playlist</button>
+                    <button class="delete-workout-btn btn btn-danger" value="${playlist.id}" data-id="${playlist.workouts[i].id}">Remove from Playlist</button>
             </div>
       `);
 	}
@@ -125,7 +125,7 @@ function getUserPlaylists() {
 }
 
 function deleteWorkout() {
-	$(".delete-playlist-btn")
+	$(".delete-workout-btn")
 		.click(function () {
 			let request = {
 				method: "DELETE",
