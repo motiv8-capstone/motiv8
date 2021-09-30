@@ -5,9 +5,9 @@ export default function Navbar(props) {
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-            <a class="nav-link" href="/" data-link>Home</a>
-            </li>
+        <li class="nav-item active">
+    		<a class="nav-link navbar-brand logo-link" href="/" data-link> </a>
+  			</li>
             <li class="nav-item active">
             <a class="nav-link" href="/workouts" data-link>Workouts</a>
             </li>
@@ -32,13 +32,9 @@ export default function Navbar(props) {
         ">
         <div class="container-fluid">
         <ul class="navbar-nav">
-<li class="nav-item active">
-    <a class="nav-link navbar-brand logo-link" href="/" data-link> </a>
-  </li>
-<!--            <li class="nav-item active">    -->
-
-<!--            <a class="nav-link" href="/" data-link>Home</a>-->
-<!--            </li>-->
+		<li class="nav-item active">
+    	<a class="nav-link navbar-brand logo-link" href="/" data-link> </a>
+ 			</li>
             <li class="nav-item active">
             <a class="nav-link" href="/workouts" data-link>Workouts</a>
             </li>
