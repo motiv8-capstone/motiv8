@@ -5,11 +5,16 @@ import {getHeaders} from "../auth.js";
 export default function Profile(props) {
 	return `
 <main>
-            <div class="container">
-                    <div class="row flex-xl-nowrap">
-                        <header>
+ 						<header>
                             <h1 class="text-center mt-2">Profile</h1>
                         </header>
+			<div class="container py-5">
+			<div class="jumbotron text-white jumbotron-image shadow" style="background-image: url(https://images.unsplash.com/photo-1540496905036-5937c10647cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80);">
+			</div>
+			</div>
+            <div class="container">
+                    <div class="row flex-xl-nowrap">
+                       
                     </div>
                     <div class="row flex-xl-nowrap">
                         
