@@ -166,6 +166,7 @@ export function createPlaylist() {
 	$("#playlist-create-btn")
 		.click(function () {
 
+
 			let playlistTitle = $("#playlist-title")
 				.val();
 
