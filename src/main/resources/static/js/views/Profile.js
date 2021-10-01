@@ -5,13 +5,13 @@ import {getHeaders} from "../auth.js";
 export default function Profile(props) {
 	return `
 <main>
- 						<header>
+                  <header>
                             <h1 class="text-center mt-2">Profile</h1>
                         </header>
-			<div class="container py-5">
-			<div class="jumbotron text-white jumbotron-image shadow" style="background-image: url(https://images.unsplash.com/photo-1540496905036-5937c10647cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80);">
-			</div>
-			</div>
+         <div class="container py-5">
+         <div class="jumbotron text-white jumbotron-image shadow" style="background-image: url(https://images.unsplash.com/photo-1540496905036-5937c10647cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80);">
+         </div>
+         </div>
             <div class="container">
                     <div class="row flex-xl-nowrap">
                        
@@ -23,28 +23,28 @@ export default function Profile(props) {
                     </div>
                     <div class="input-group mb-3">                   
                             <input id="playlist-title" class="form-control" name="playlist-title" type="text">                 
-                           	<div class="input-group-prepend">
-	                        <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create Playlist</button>
+                               <div class="input-group-prepend">
+                           <button type="submit" id="playlist-create-btn" class="btn btn-dark">Create Playlist</button>
                             </div>                        
                     </div>
                     <div class="input-group mb-3">
                             <select name="playlistDelete" id="playlistsDelete" class="form-select selectPlaylist">
-	                        </select>
-	                        <div class="input-group-prepend">
-	                        <button type="submit" id="playlist-to-delete" class="btn btn-dark">Delete Playlist</button>
+                           </select>
+                           <div class="input-group-prepend">
+                           <button type="submit" id="playlist-to-delete" class="btn btn-dark">Delete Playlist</button>
                             </div>
-            		</div>
-            		<h2>Your Playlists:</h2>
-            		<br>
-            		<div id="all-playlist" class="row">
+                  </div>
+                  <h2>Your Playlists:</h2>
+                  <br>
+                  <div id="all-playlist" class="row">
                         
-					</div>
-            		<div id="playlist-title-container" class="container-fluid row justify-between">
-            		
-					</div>
-					
-					 
-			</div>
+               </div>
+                  <div id="playlist-title-container" class="container-fluid row justify-between">
+                  
+               </div>
+               
+                
+         </div>
         </main>
     `;
 }
