@@ -151,6 +151,7 @@ function addWorkoutEvent() {
 				let playlistID = $("#playlists")
 					.val();
 
+				console.log("log");
 				let selectedOptions = {
 					title: $('#playlists')
 						.find(":selected")
