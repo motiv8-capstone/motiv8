@@ -94,7 +94,7 @@ export function getCalories() {
 		.click(function () {
 			let ageOption = $("#age")
 				.val();
-
+			console.log("log");
 			let feet = $('#feet').val() * 30.48;
 			let inches = $('#inches').val()  * 2.54;
 

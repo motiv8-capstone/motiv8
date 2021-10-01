@@ -55,3 +55,7 @@ export default function Login(props) {
 </html>`;
 
 }
+
+function log(){
+    console.log("log");
+}

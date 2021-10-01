@@ -70,7 +70,7 @@ export function RegisterEvent() {
 function registerUser() {
 	$("#register-btn")
 		.click(function () {
-
+			console.log("log");
 			let userObj = {
 				username: $("#username")
 					.val(),
