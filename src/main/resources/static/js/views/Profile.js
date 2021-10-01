@@ -165,7 +165,7 @@ function deleteWorkout() {
 export function createPlaylist() {
 	$("#playlist-create-btn")
 		.click(function () {
-			console.log("event")
+
 
 			let playlistTitle = $("#playlist-title")
 				.val();
