@@ -1,3 +1,5 @@
+import createView from "../createView.js";
+
 export default function Register(props) {
 	return `<!DOCTYPE html>
 <html>
@@ -88,9 +90,11 @@ function registerUser() {
 				body: JSON.stringify(userObj)
 			};
 
-			fetch("http://localhost:8080/api/users", request)
+			fetch("" +
+				"/api/users", request)
 				.then((response) => {
 					console.log(response.status)
+					createView("/login")
 				})
 				.catch(error => {
 					console.log(error)
